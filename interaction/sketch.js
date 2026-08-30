@@ -15,7 +15,6 @@ const GLOW_OPACITY_ACTIVE = 1;
 
 const SHADOW_BLUR = 18;
 
-// 아이맥 이상 판형(뷰포트 폭 ≥ 2000px)에서는 도형과 광선효과를 크게 키운다.
 function viewportScale() {
   if (windowWidth >= 2560) return 5 / 1.5;
   if (windowWidth >= 2000) return 4 / 1.5;
@@ -60,8 +59,6 @@ function randomShapeDef() {
     return {
       type,
       size: random(COVE_SIZE_RANGE[0], COVE_SIZE_RANGE[1]),
-      // which corner of the square stays solid — the other three quadrants
-      // get carved away by the inscribed-circle cutout
       sx: random([-1, 1]),
       sy: random([-1, 1]),
     };
@@ -75,10 +72,6 @@ function randomShapeDef() {
   };
 }
 
-// Even color mix: build a bag with each palette color repeated an equal
-// number of times (as equal as SHAPE_COUNT allows), then shuffle it, so the
-// palette is used in balanced proportions instead of drifting unevenly like
-// independent per-shape random picks would.
 function balancedShadowIndices(count) {
   const indices = [];
   for (let i = 0; i < count; i++) {
@@ -131,18 +124,13 @@ function setup() {
 
   createShapes();
 
-  // Nothing here animates on its own — only drag, reset, and resize change
-  // what's on screen — so stop the default 60fps loop and redraw on demand.
   noLoop();
 }
 
 const SCATTER_ATTEMPTS = 40;
-const OVERLAP_ALLOWANCE = 0.5; // fraction of combined half-extents shapes may overlap
+const OVERLAP_ALLOWANCE = 0.5;
 
 function createShapes() {
-  // Fully free scatter (no grid): each shape gets a random spot in the area,
-  // trying several candidates and keeping the one with the least overlap.
-  // Kept a bit inside the canvas edges so shapes don't feel clipped by it.
   const areaW = width * 0.85;
   const areaH = height * 0.62;
 
@@ -154,9 +142,6 @@ function createShapes() {
   const vScale = viewportScale();
   const shapeScale = SHAPE_SCALE * vScale;
 
-  // On enlarged (iMac) layouts the shapes are big enough that the original
-  // centred band + size-proportional spacing can't be satisfied, so switch to
-  // a full-canvas uniform scatter and cap how far apart shapes must sit.
   const bigScreen = vScale > 1;
   const inset = Math.min(width, height) * 0.03;
   const maxSpacing = Math.min(width, height) * 0.22;
@@ -174,8 +159,6 @@ function createShapes() {
     if (def.type === "circle" || def.type === "semicircle") {
       shape.radius = def.radius * shapeScale;
     } else if (def.type === "cove") {
-      // Square bounding box (w === h) so it reuses the same bounds/overlap
-      // math as rect/ellipse below.
       shape.w = def.size * shapeScale;
       shape.h = shape.w;
       shape.sx = def.sx;
@@ -191,8 +174,6 @@ function createShapes() {
     const half = getHalfExtent(shape);
     const b = getShapeBounds(shape);
 
-    // Center range that keeps the whole shape on-canvas. On big screens hold the
-    // vertical field to the upper ~72% so shapes don't land behind the footer.
     const minX = b.left + inset;
     const maxX = width - b.right - inset;
     const minY = b.top + inset;
@@ -245,8 +226,6 @@ function resetShapes() {
   redraw();
 }
 
-// ---- pointer / drag handling ----
-
 function getCanvasPoint(clientX, clientY) {
   const rect = canvas.elt.getBoundingClientRect();
   return { x: clientX - rect.left, y: clientY - rect.top };
@@ -262,7 +241,7 @@ function onPointerDown(e) {
   startDrag(x, y);
   if (draggedShape) {
     if (e.cancelable) e.preventDefault();
-    redraw(); // z-order/glow change even before any movement
+    redraw();
   }
 }
 
@@ -277,7 +256,7 @@ function onPointerMove(e) {
 function onPointerUp() {
   if (!draggedShape) return;
   draggedShape = null;
-  redraw(); // clear the active-drag glow
+  redraw();
 }
 
 function startDrag(px, py) {
@@ -301,8 +280,6 @@ function updateDrag(px, py) {
   draggedShape.y = constrain(py - dragOffsetY, b.top, height - b.bottom);
 }
 
-// ---- geometry helpers ----
-
 function getHalfExtent(shape) {
   if (shape.type === "circle" || shape.type === "semicircle") {
     return shape.radius;
@@ -310,10 +287,6 @@ function getHalfExtent(shape) {
   return Math.max(shape.w, shape.h) / 2;
 }
 
-// Directional bounding box from the shape's center — unlike getHalfExtent,
-// this accounts for the semicircle's flat (cut) edge having no extent above
-// its center, so it isn't kept away from the canvas edge as if it were a
-// full circle.
 function getShapeBounds(shape) {
   if (shape.type === "circle") {
     return {
@@ -362,8 +335,6 @@ function pointInShape(px, py, shape) {
   if (shape.type === "cove") {
     const half = shape.w / 2;
     if (Math.abs(lx) > half || Math.abs(ly) > half) return false;
-    // Outside the inscribed-circle cutout (radius = full side, centered on
-    // the corner opposite the one that stays solid).
     const ox = -shape.sx * half;
     const oy = -shape.sy * half;
     const ddx = lx - ox;
@@ -373,8 +344,6 @@ function pointInShape(px, py, shape) {
 
   return Math.abs(lx) <= shape.w / 2 && Math.abs(ly) <= shape.h / 2;
 }
-
-// ---- drawing ----
 
 function drawSolidShape(shape) {
   if (!shape) return;
@@ -393,10 +362,6 @@ function drawSolidShape(shape) {
   } else if (shape.type === "ellipse") {
     ellipse(0, 0, shape.w, shape.h);
   } else if (shape.type === "cove") {
-    // Square corner left over after cutting out a circle inscribed in the
-    // full square (a skateboard-ramp / quarter-pipe profile): two straight
-    // edges from the solid corner (c) to its neighbors (a, b), closed off by
-    // the cutout's arc, centered on the opposite corner (o).
     const half = shape.w / 2;
     const cx = shape.sx * half;
     const cy = shape.sy * half;
@@ -410,7 +375,7 @@ function drawSolidShape(shape) {
     const angleA = Math.atan2(ay - oy, ax - ox);
     const angleB = Math.atan2(by - oy, bx - ox);
     const anticlockwise =
-      ((angleB - angleA + Math.PI * 2) % (Math.PI * 2)) > Math.PI;
+      (angleB - angleA + Math.PI * 2) % (Math.PI * 2) > Math.PI;
 
     drawingContext.beginPath();
     drawingContext.moveTo(cx, cy);
