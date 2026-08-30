@@ -1,2 +1,4 @@
-*.html
-*.js
+# sketch.js is loaded by index.html and must be committed/deployed.
+# Only keep local-only dev files out of the repo.
+.DS_Store
+canvas.html
