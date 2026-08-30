@@ -290,6 +290,12 @@ img {
   width: 55%;
 }
 
+/* 참가자 이미지: 연한 회색 테두리 */
+.cell-content img,
+.cell-detail__images img {
+  border: 1px solid #e3e3e3;
+}
+
 .cell_1 .cell-item h2,
 .cell_1 .cell-item .cell-title p,
 .cell_2 .cell-item h2,
