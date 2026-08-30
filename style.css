@@ -58,6 +58,11 @@
   box-sizing: border-box;
 }
 
+html {
+  /* 기준 폭 1512px에서 1rem = 16px, 이후 화면 폭에 비례해 확대 */
+  font-size: max(13px, 1.0582vw);
+}
+
 :root {
   --accent-1: #d04a10;
   --accent-1-rgb: 235, 131, 71;
@@ -88,7 +93,7 @@
 body {
   margin: 0;
   padding: 0;
-  padding-bottom: 160px;
+  padding-bottom: 10rem;
   font-family: "윤고딕+diatype", sans-serif;
   font-feature-settings: "ss13" 0;
   color: rgb(30, 30, 30);
@@ -190,7 +195,7 @@ img {
 .footer-logo {
   grid-column: 3;
   justify-self: end;
-  width: 130px;
+  width: 8.125rem;
   height: auto;
   fill: #ffffff;
   filter: drop-shadow(0 0 3px rgba(6, 6, 6, 0.4))
@@ -211,16 +216,16 @@ img {
 @keyframes titleGlowCycle {
   0%,
   100% {
-    text-shadow: 0 0 12px rgba(var(--accent-1-rgb), 0.35);
+    text-shadow: 0 0 12px rgba(var(--accent-1-rgb), 1);
   }
   25% {
-    text-shadow: 0 0 12px rgba(var(--accent-2-rgb), 0.35);
+    text-shadow: 0 0 12px rgba(var(--accent-2-rgb), 1);
   }
   50% {
-    text-shadow: 0 0 12px rgba(var(--accent-3-rgb), 0.35);
+    text-shadow: 0 0 12px rgba(var(--accent-3-rgb), 1);
   }
   75% {
-    text-shadow: 0 0 12px rgba(var(--accent-4-rgb), 0.35);
+    text-shadow: 0 0 12px rgba(var(--accent-4-rgb), 1);
   }
 }
 
@@ -229,8 +234,8 @@ img {
 .main {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  padding: 40px;
+  gap: 2.5rem;
+  padding: 2.5rem;
 }
 
 .cell_1,
@@ -239,7 +244,7 @@ img {
 .cell_4 {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 2.5rem;
   font-size: 1rem;
   padding: 0 0.5rem;
 }
@@ -264,11 +269,11 @@ img {
 
 .cell-item h2 {
   font-size: 1.05rem;
-  margin-bottom: 4px;
+  margin-bottom: 0.25rem;
 }
 
 .cell-title p {
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
 }
 
 .cell-item img {
@@ -281,7 +286,6 @@ img {
   margin-top: 1.5rem;
 }
 
-/* 홈 화면 메인페이지 이미지: 원본 비율 그대로 노출 */
 .cell-content img:not(.zine-image) {
   width: 100%;
 }
@@ -290,12 +294,11 @@ img {
   width: 55%;
 }
 
-/* 참가자 이미지: 연한 회색 소프트 글로우 (선 대신 작은 그라디언트 광선) */
 .cell-content img,
 .cell-detail__images img {
   box-shadow:
-    0 0 0 1px rgba(227, 227, 227, 0.7),
-    0 0 10px 2px rgba(227, 227, 227, 0.55);
+    0 0 1px rgba(227, 227, 227, 0.7),
+    0 0 0 2px rgba(227, 227, 227, 0.55);
 }
 
 .cell_1 .cell-item h2,
@@ -413,7 +416,7 @@ img {
   position: fixed;
   left: 50%;
   top: 50%;
-  width: min(100vw, 800px);
+  width: min(100vw, 50rem);
   height: 65vh;
   overflow: hidden;
   display: flex;
@@ -447,7 +450,7 @@ img {
 }
 
 #cell-popup {
-  width: min(95vw, 1100px);
+  width: min(95vw, 68.75rem);
   height: 80vh;
 }
 
@@ -574,5 +577,74 @@ img {
   .cell-detail__meta,
   .cell-detail__grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- iMac 등 대형 화면: 글로우 효과 약 2배 확대 ---------- */
+
+@media (min-width: 2000px) {
+  .footer h1,
+  .footer p {
+    text-shadow: 0 0 16px rgba(6, 6, 6, 0.65);
+  }
+
+  .footer h1 {
+    text-shadow: 0 0 24px rgba(6, 6, 6, 0.6);
+  }
+
+  .footer-logo {
+    filter: drop-shadow(0 0 6px rgba(6, 6, 6, 0.4))
+      drop-shadow(0 0 12px rgba(6, 6, 6, 0.4));
+  }
+
+  #page-title:hover {
+    text-shadow: 0 0 24px rgba(var(--accent-1-rgb), 0.35);
+  }
+
+  @keyframes titleGlowCycle {
+    0%,
+    100% {
+      text-shadow: 0 0 24px rgba(var(--accent-1-rgb), 1);
+    }
+    25% {
+      text-shadow: 0 0 24px rgba(var(--accent-2-rgb), 1);
+    }
+    50% {
+      text-shadow: 0 0 24px rgba(var(--accent-3-rgb), 1);
+    }
+    75% {
+      text-shadow: 0 0 24px rgba(var(--accent-4-rgb), 1);
+    }
+  }
+
+  .cell-content img,
+  .cell-detail__images img {
+    box-shadow:
+      0 0 2px rgba(227, 227, 227, 0.7),
+      0 0 0 4px rgba(227, 227, 227, 0.55);
+  }
+
+  .cell_1 .cell-content:hover {
+    box-shadow: 0 0 40px rgba(var(--cell-1-glow-rgb), var(--cell-1-glow-opacity));
+  }
+
+  .cell_2 .cell-content:hover {
+    box-shadow: 0 0 40px rgba(var(--cell-2-glow-rgb), var(--cell-2-glow-opacity));
+  }
+
+  .cell_3 .cell-content:hover {
+    box-shadow: 0 0 40px rgba(var(--cell-3-glow-rgb), var(--cell-3-glow-opacity));
+  }
+
+  .cell_4 .cell-content:hover {
+    box-shadow: 0 0 40px rgba(var(--cell-4-glow-rgb), var(--cell-4-glow-opacity));
+  }
+
+  .keynote-popup {
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
+  }
+
+  .keynote-popup__close {
+    text-shadow: 0 0 10px rgb(24, 24, 24);
   }
 }
