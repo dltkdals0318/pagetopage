@@ -58,6 +58,13 @@
   box-sizing: border-box;
 }
 
+/* 커스텀 커서를 hover·클릭·텍스트 등 모든 상태에서 유지 */
+*,
+*::before,
+*::after {
+  cursor: url("source/image/cursor.png") 0 0, auto !important;
+}
+
 html {
   /* 기준 폭 1512px에서 1rem = 16px, 이후 화면 폭에 비례해 확대 */
   font-size: max(13px, 1.0582vw);
@@ -101,6 +108,7 @@ body {
   line-height: 163.7%;
   word-break: keep-all;
   word-spacing: 0.018em;
+  cursor: url("source/image/cursor.png") 0 0, auto;
 }
 ::selection {
   color: white;
@@ -156,6 +164,8 @@ img {
   align-items: center;
   padding: 2.5rem 3rem;
   background: linear-gradient(to bottom, transparent, #ffffff 80%);
+  /* 빈 영역이 인트로 캔버스 클릭을 가로채지 않도록 */
+  pointer-events: none;
 }
 
 .footer h1,
@@ -174,7 +184,8 @@ img {
   line-height: 1;
   text-shadow: 0 0 12px rgba(6, 6, 6, 0.6);
   transform: translateY(4.25rem);
-  cursor: pointer;
+  cursor: url("source/image/cursor.png") 0 0, auto;
+  pointer-events: auto;
 }
 .footer p:nth-of-type(1) {
   grid-column: 1;
@@ -361,7 +372,7 @@ img {
   padding: 1.25rem;
   margin: -1.25rem;
   border-radius: 12px;
-  cursor: pointer;
+  cursor: url("source/image/cursor.png") 0 0, auto;
   transition: box-shadow 0.3s ease;
 }
 
@@ -464,7 +475,7 @@ img {
   line-height: 1;
   color: white;
   text-shadow: 0 0 5px rgb(24, 24, 24);
-  cursor: pointer;
+  cursor: url("source/image/cursor.png") 0 0, auto;
   z-index: 2;
 }
 .keynote-popup__close:hover {
@@ -625,26 +636,50 @@ img {
   }
 
   .cell_1 .cell-content:hover {
-    box-shadow: 0 0 40px rgba(var(--cell-1-glow-rgb), var(--cell-1-glow-opacity));
+    box-shadow: 0 0 40px
+      rgba(var(--cell-1-glow-rgb), var(--cell-1-glow-opacity));
   }
 
   .cell_2 .cell-content:hover {
-    box-shadow: 0 0 40px rgba(var(--cell-2-glow-rgb), var(--cell-2-glow-opacity));
+    box-shadow: 0 0 40px
+      rgba(var(--cell-2-glow-rgb), var(--cell-2-glow-opacity));
   }
 
   .cell_3 .cell-content:hover {
-    box-shadow: 0 0 40px rgba(var(--cell-3-glow-rgb), var(--cell-3-glow-opacity));
+    box-shadow: 0 0 40px
+      rgba(var(--cell-3-glow-rgb), var(--cell-3-glow-opacity));
   }
 
   .cell_4 .cell-content:hover {
-    box-shadow: 0 0 40px rgba(var(--cell-4-glow-rgb), var(--cell-4-glow-opacity));
+    box-shadow: 0 0 40px
+      rgba(var(--cell-4-glow-rgb), var(--cell-4-glow-opacity));
   }
 
   .keynote-popup {
     box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
+    border-radius: 64px;
   }
 
   .keynote-popup__close {
     text-shadow: 0 0 10px rgb(24, 24, 24);
+  }
+
+  .cell-content {
+    border-radius: 24px;
+  }
+
+  /* 커서도 화면에 맞춰 커지도록 (vw 스케일과 동일한 비율) */
+  *,
+  *::before,
+  *::after {
+    cursor: url("source/image/cursor-lg.png") 0 0, auto !important;
+  }
+}
+
+@media (min-width: 2560px) {
+  *,
+  *::before,
+  *::after {
+    cursor: url("source/image/cursor-xl.png") 0 0, auto !important;
   }
 }

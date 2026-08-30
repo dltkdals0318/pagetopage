@@ -13,6 +13,15 @@ const SHAPE_OPACITY = 1;
 const GLOW_OPACITY = 0.6;
 const GLOW_OPACITY_ACTIVE = 1;
 
+const SHADOW_BLUR = 18;
+
+// 아이맥 이상 판형(뷰포트 폭 ≥ 2000px)에서는 도형과 광선효과를 크게 키운다.
+function viewportScale() {
+  if (windowWidth >= 2560) return 5 / 1.5;
+  if (windowWidth >= 2000) return 4 / 1.5;
+  return 1;
+}
+
 function hexToRgba(hex, alpha) {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
@@ -142,6 +151,16 @@ function createShapes() {
 
   const shadowIndices = balancedShadowIndices(SHAPE_COUNT);
 
+  const vScale = viewportScale();
+  const shapeScale = SHAPE_SCALE * vScale;
+
+  // On enlarged (iMac) layouts the shapes are big enough that the original
+  // centred band + size-proportional spacing can't be satisfied, so switch to
+  // a full-canvas uniform scatter and cap how far apart shapes must sit.
+  const bigScreen = vScale > 1;
+  const inset = Math.min(width, height) * 0.03;
+  const maxSpacing = Math.min(width, height) * 0.22;
+
   for (let i = 0; i < SHAPE_COUNT; i++) {
     const def = randomShapeDef();
 
@@ -149,21 +168,21 @@ function createShapes() {
       type: def.type,
       angle: 0,
       shadowColor: shadowPalette[shadowIndices[i]],
-      shadowBlur: 18,
+      shadowBlur: SHADOW_BLUR * vScale,
     };
 
     if (def.type === "circle" || def.type === "semicircle") {
-      shape.radius = def.radius * SHAPE_SCALE;
+      shape.radius = def.radius * shapeScale;
     } else if (def.type === "cove") {
       // Square bounding box (w === h) so it reuses the same bounds/overlap
       // math as rect/ellipse below.
-      shape.w = def.size * SHAPE_SCALE;
+      shape.w = def.size * shapeScale;
       shape.h = shape.w;
       shape.sx = def.sx;
       shape.sy = def.sy;
     } else {
-      shape.w = def.w * SHAPE_SCALE;
-      shape.h = def.h * SHAPE_SCALE;
+      shape.w = def.w * shapeScale;
+      shape.h = def.h * shapeScale;
       if (def.type === "rect") {
         shape.radii = cornerRadiiFor(def.style, shape.w, shape.h);
       }
@@ -172,17 +191,34 @@ function createShapes() {
     const half = getHalfExtent(shape);
     const b = getShapeBounds(shape);
 
+    // Center range that keeps the whole shape on-canvas. On big screens hold the
+    // vertical field to the upper ~72% so shapes don't land behind the footer.
+    const minX = b.left + inset;
+    const maxX = width - b.right - inset;
+    const minY = b.top + inset;
+    const maxY = bigScreen
+      ? height * 0.76 - b.bottom
+      : height - b.bottom - inset;
+
     let bestX = width / 2;
     let bestY = height / 2;
     let bestScore = -Infinity;
 
     for (let attempt = 0; attempt < SCATTER_ATTEMPTS; attempt++) {
-      const x = constrain(startX + random(areaW), b.left, width - b.right);
-      const y = constrain(startY + random(areaH), b.top, height - b.bottom);
+      let x;
+      let y;
+      if (bigScreen) {
+        x = minX < maxX ? random(minX, maxX) : width / 2;
+        y = minY < maxY ? random(minY, maxY) : height * 0.4;
+      } else {
+        x = constrain(startX + random(areaW), b.left, width - b.right);
+        y = constrain(startY + random(areaH), b.top, height - b.bottom);
+      }
 
       let score = Infinity;
       for (const other of shapes) {
-        const allowed = (half + getHalfExtent(other)) * OVERLAP_ALLOWANCE;
+        let allowed = (half + getHalfExtent(other)) * OVERLAP_ALLOWANCE;
+        if (bigScreen) allowed = Math.min(allowed, maxSpacing);
         score = Math.min(score, dist(x, y, other.x, other.y) - allowed);
       }
 
@@ -400,7 +436,7 @@ function drawShapeWithShadow(shape) {
     shape.shadowColor || shadowPalette[0],
     glowOpacity,
   );
-  drawingContext.shadowBlur = shape.shadowBlur || 18;
+  drawingContext.shadowBlur = shape.shadowBlur || SHADOW_BLUR;
   drawingContext.shadowOffsetX = 0;
   drawingContext.shadowOffsetY = 0;
 
