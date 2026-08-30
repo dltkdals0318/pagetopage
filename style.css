@@ -273,17 +273,21 @@ img {
 
 .cell-item img {
   display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .cell-item img + img {
   margin-top: 1.5rem;
 }
 
+/* 홈 화면 메인페이지 이미지: 원본 비율 그대로 노출 */
+.cell-content img:not(.zine-image) {
+  width: 100%;
+}
+
 .zine-image {
-  width: 50%;
-  height: auto;
-  aspect-ratio: 210 / 297;
-  object-fit: cover;
+  width: 55%;
 }
 
 .cell_1 .cell-item h2,
