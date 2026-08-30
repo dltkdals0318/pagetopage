@@ -1,0 +1,2572 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>page to page</title>
+
+    <!-- intro interaction libs -->
+    <script src="addons/p5.min.js"></script>
+    <script src="interaction/sketch.js"></script>
+  </head>
+  <body>
+    <div class="intro" id="intro-canvas"></div>
+    <div class="footer">
+      <h1 id="page-title">
+        <span class="latin-letter">page to page</span>
+      </h1>
+      <p>
+        <span class="latin-digit">2026</span><span class="latin-symbol">.</span
+        ><span class="latin-digit">08</span><span class="latin-symbol">.</span
+        ><span class="latin-digit">31</span><br /><span class="latin-symbol"
+          >-</span
+        ><span class="latin-digit">09</span><span class="latin-symbol">.</span
+        ><span class="latin-digit">04</span>
+      </p>
+      <svg
+        class="footer-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 866.4 682.54"
+      >
+        <g>
+          <polygon
+            points="294.89 94.49 323.19 74.15 323.19 73.27 323.19 47.24 323.19 46.35 323.19 21.41 323.19 20.53 323.19 5.64 323.19 4.76 173.63 15.63 173.63 16.52 173.63 63.75 173.63 64.64 173.63 166.52 173.63 167.4 222.93 167.4 222.93 166.52 222.93 58.9 280.77 52.17 234.99 86.32 235.41 86.88 234.99 87.2 259.64 119.83 259.79 119.72 300.73 173.38 338.81 145.65 338.34 145.11 338.81 144.77 294.89 94.49"
+          />
+          <polygon
+            points="527.2 17.31 527.2 66.73 527.2 67.61 578.82 64.52 578.82 167.54 578.82 168.42 631.69 168.42 631.69 167.54 631.69 61.36 681.82 58.37 681.82 57.48 681.82 7.53 681.82 6.64 527.2 16.43 527.2 17.31"
+          />
+          <polygon
+            points="0 15.5 0 16.38 0 63.34 0 64.23 0 166.38 0 167.27 49.31 167.27 49.31 166.38 49.31 58.95 114.92 51.92 63.55 85.91 64 86.5 63.55 86.79 92.32 125.13 152.31 79.18 152.31 78.3 152.31 47.92 152.31 47.03 152.31 28.07 152.31 27.19 152.31 5.51 152.31 4.62 0 15.5"
+          />
+          <path
+            d="M430.11,123.97c-22.86,0-38.94-15.57-39.15-38.69.21-21.8,16.3-37.63,39.15-37.63s38.12,15.84,38.33,37.63c-.21,23.13-16.02,38.69-38.33,38.69M429.84,0C379.71,0,343.55,35.89,343.55,85.37c0,.15.02.29.02.44s-.02.29-.02.44c0,49.48,36.16,85.64,86.29,85.64s86.01-36.16,86.01-85.64c0-.15-.02-.29-.02-.44,0-.15.02-.29.02-.44C515.85,35.89,479.69,0,429.84,0"
+          />
+          <path
+            d="M780.66,123.97c-22.86,0-38.94-15.57-39.15-38.69.21-21.8,16.29-37.63,39.15-37.63s38.12,15.83,38.33,37.63c-.21,23.13-16.02,38.69-38.33,38.69M866.4,85.37c0-49.48-36.16-85.37-86.01-85.37s-86.29,35.89-86.29,85.37c0,.15.02.29.02.44,0,.15-.02.29-.02.44,0,49.48,36.16,85.64,86.29,85.64s86.01-36.16,86.01-85.64c0-.15-.02-.29-.02-.44s.02-.29.02-.44"
+          />
+        </g>
+        <g>
+          <path
+            d="M756.45,478.1c-21.8,0-39.47-17.54-39.47-39.18s17.67-39.17,39.47-39.17,39.48,17.54,39.48,39.17-17.67,39.18-39.48,39.18M704.33,525.33h-26.51v26.31h-26.74v-26.31h-26.51v-26.54h79.75v26.54ZM624.58,426.16h53.25v52.84h-26.74v-26.31h-26.51v-26.54ZM401.75,578.17v-26.54h-79.75v-26.54h26.51v-26.31h26.74v26.31h26.51v26.54h53.25v51.75h-26.74v-25.22h-26.51ZM295.13,452.69v-26.54h106.43v52.84h-26.74v-26.31h-26.45v26.31h-26.74v-26.31h-26.51ZM244.74,578.17v-26.54h53.25v51.75h-26.74v-25.22h-26.51ZM165.07,498.09h79.75v26.54h-79.75v-26.54ZM165.07,426.16h53.25v52.84h-26.74v-26.31h-26.51v-26.54ZM130.82,525.33h-26.51v26.31h-26.74v-79.15h26.74v26.3h26.51v26.54ZM822.53,524.59v-52.51h26.08v-72.81h-52.52v-26.46h-26.51v-26.31h-26.74v26.31h-26.51v26.46h-229.1c17.8,3.79,31.15,19.49,31.15,38.29,0,21.64-17.67,39.18-39.48,39.18s-39.47-17.54-39.47-39.18c0-18.8,13.35-34.5,31.15-38.29H79.75v-26.46h-26.51v-26.31h-26.74v26.31H0v56.61c4.46-16.78,19.86-29.16,38.17-29.16,21.8,0,39.48,17.54,39.48,39.18s-17.67,39.18-39.48,39.18c-18.31,0-33.71-12.38-38.17-29.16v153.99h104.43l-.12-51.74h26.74v26.31h26.51v25.43h87.67v79.11h53.25v-26.31h-26.74v-26.54h26.74v-26.26h103.68v79.11h53.25v-26.31h-26.74v-26.54h26.74v-26.26h116.17v-51.8h-26.74v-26.31h-26.51v-26.54h26.51v-26.54h-26.51v-26.31h26.51v-26.31h26.74v132h26.74v26.31h26.51v25.49h223.8v-52.2h-26.08v-.11h-79.69v-26.54h26.51v-26.31h26.74v26.31h26.44Z"
+          />
+          <path
+            d="M53.78,438.92c0-8.28-6.76-14.98-15.1-14.98s-15.1,6.71-15.1,14.98,6.76,14.99,15.1,14.99,15.1-6.71,15.1-14.99"
+          />
+          <path
+            d="M464.23,437.06c0,8.28,6.76,14.99,15.1,14.99s15.1-6.71,15.1-14.99-6.76-14.98-15.1-14.98-15.1,6.71-15.1,14.98"
+          />
+          <path
+            d="M756.45,423.94c-8.34,0-15.1,6.71-15.1,14.98s6.76,14.99,15.1,14.99,15.1-6.71,15.1-14.99-6.76-14.98-15.1-14.98"
+          />
+        </g>
+      </svg>
+    </div>
+    <div class="main">
+      <div class="cell_1">
+        <div class="cell-item">
+          <div class="explanation">
+            <img
+              src="source/image/2_Linear_nonlinear.webp"
+              width="90%"
+              alt="선형/비선형"
+            />
+            <h2>선형 | 비선형</h2>
+            <p>
+              텍스트는 처음부터 끝까지 하나의 흐름을 따라가도록 설계되기도
+              하고<span class="latin-symbol">,</span> 독자가 스스로 읽기의
+              순서를 구성하도록 열려 있기도 하다<span class="latin-symbol"
+                >.</span
+              >
+              매체의 특성에 따라 텍스트가 정보를 조직하고 전달하는 방식이
+              달라진다<span class="latin-symbol">.</span>
+            </p>
+          </div>
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>
+                <span class="latin-letter">I See You</span
+                ><span class="latin-symbol">!</span>
+              </h2>
+              <p>현혜정&nbsp;안보연</p>
+            </div>
+            <p>
+              ​진의 가이드를 따라 영화 아바타 속 나비어를 학습하고 웹에서 직접
+              활용한다<span class="latin-symbol">.</span> 단계별 선형적 학습과
+              자유로운 비선형적 탐색이 진과 웹에서 유기적으로 연결되는
+              상호작용을 체험한다<span class="latin-symbol">.</span>
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title"
+                  ><span class="latin-letter">I See You</span
+                  ><span class="latin-symbol">!</span></span
+                ><br />현혜정&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">x</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-letter">xjh</span>_<span
+                  class="latin-letter"
+                  >h</span
+                ><br />안보연&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">can</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-letter">tseee</span>
+              </p>
+              <p>
+                <span class="latin-digit">150</span
+                ><span class="latin-symbol">×</span
+                ><span class="latin-digit">150</span>㎜<br />스노우지
+                <span class="latin-digit">180</span
+                ><span class="latin-letter">g</span><br /><span
+                  class="latin-letter"
+                  >beatiful</span
+                ><span class="latin-symbol">,</span>
+                <span class="latin-digit">6</span
+                ><span class="latin-letter">script</span
+                ><span class="latin-symbol">,</span>
+                <span class="latin-letter">Source Han Serif</span> 본명조<span
+                  class="latin-symbol"
+                  >,</span
+                >
+                <span class="latin-letter">Charis</span>
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter"
+                  >Dongle</span
+                ><span class="latin-symbol">,</span>
+                <span class="latin-letter">Bpmf Huninn</span>
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    진은 실제 학습지를 모티프로 제작<span class="latin-symbol"
+                      >,</span
+                    >
+                    웹은 동화처럼 구현했다<span class="latin-symbol">.</span>
+                    영화 <span class="tight-bracket-open">〈</span>아바타<span
+                      class="tight-bracket-close"
+                      >〉</span
+                    >
+                    속 나비어를 유아풍 삽화와 쉬운 스토리로 풀어내어 사용자가
+                    부담 없이 접하고<span class="latin-symbol">,</span> 익힘의
+                    흥미를 느끼도록 구성했다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    선형<span class="latin-symbol">-</span>비선형 특성을 어떻게
+                    해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    팀의 특성은 선형과 비선형이다<span class="latin-symbol"
+                      >.</span
+                    >
+                    진에는 선형적 역할을 부여해 사용자를
+                    <span class="latin-symbol">‘</span>단계별<span
+                      class="latin-symbol"
+                      >’</span
+                    >
+                    학습 체계로 이끈다<span class="latin-symbol">.</span> 반면
+                    웹에는 비선형적 역할을 부여하여 사용자가 원하는 경로로
+                    <span class="latin-symbol">‘</span>자유롭게<span
+                      class="latin-symbol"
+                      >’</span
+                    >
+                    탐색하도록 설계했다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    진의 학습 단계를 따라가면 자연스럽게 웹<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    곧 실전으로 흥미가 확장된다<span class="latin-symbol"
+                      >.</span
+                    >
+                    또 웹 내 체험요소는 진의 정보를 습득해야만 진행할 수 있도록
+                    했다<span class="latin-symbol">.</span> 어느 매체를 먼저
+                    접하든 두 매체를 넘나들게 되도록 설계했다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell-item">
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>벽 너머</h2>
+              <p>김태희&nbsp;김서영</p>
+            </div>
+            <p>
+              벽 하나를 사이에 두고 우리는 다른 삶을 살아간다<span
+                class="latin-symbol"
+                >.</span
+              >
+              공간에 남겨진 물건과 흔적을 따라가며<span class="latin-symbol"
+                >,</span
+              >
+              보이지 않던 타인의 삶을 해석하는 경험을 제안한다<span
+                class="latin-symbol"
+                >.</span
+              >
+              관찰에서 이해로<span class="latin-symbol">,</span> 두 매체가
+              포개어지며 타인을 바라보는 시선을 완성한다<span
+                class="latin-symbol"
+                >.</span
+              >
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title">벽 너머</span
+                ><br />김태희&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">taehui</span>_<span
+                  class="latin-letter"
+                  >i</span
+                ><br />김서영&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">seoyvre</span>
+              </p>
+              <p>
+                <span class="latin-digit">110</span
+                ><span class="latin-letter">x</span
+                ><span class="latin-digit">210</span>㎜<br />화이트크라프트
+                <span class="latin-digit">80</span
+                ><span class="latin-letter">g</span><br /><span
+                  class="latin-letter"
+                  >AG</span
+                >
+                최정호 민부리
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter">AG</span>
+                최정호 민부리<span class="latin-symbol">,</span>
+                <span class="latin-letter">Helvetica Neue</span
+                ><span class="latin-symbol">,</span>
+                <span class="latin-letter">Pretendard</span>
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    벽 하나를 사이에 두고 살아가면서도 서로를 알지 못하는 이웃
+                    관계에 주목하였다<span class="latin-symbol">.</span> 공간에
+                    남겨진 흔적을 매개로 타인의 삶을 해석해 보는 경험을
+                    통해<span class="latin-symbol">,</span> 낯선 이웃을 향한
+                    관심과 이해의 태도를 제안한다<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    선형<span class="latin-symbol">-</span>비선형 특성을 어떻게
+                    해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    팀에서 선택한 특성은 선형성과 비선형성이다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    웹은 타인의 삶을 파편적으로 알아가는 방식을 반영해 자유로운
+                    비선형적 탐색을 제공하고<span class="latin-symbol">,</span>
+                    진은 물건의 이야기와 맥락을 차례대로 접하며 타인의 삶을
+                    다양한 관점에서 이해하도록 구성한다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    웹은 두 호실을 자유롭게 탐험하며 물건과 흔적을 발견하고
+                    자신만의 해석을 기록하는 매체이다<span class="latin-symbol"
+                      >.</span
+                    >
+                    진은 물건의 이야기와 맥락을 제공해 주관적인 해석을
+                    확장한다<span class="latin-symbol">.</span> 웹이 관찰의
+                    경험을<span class="latin-symbol">,</span> 진이 이해의 경험을
+                    제공하며 서로를 보완한다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell-item">
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>
+                <span class="latin-letter">B</span
+                ><span class="latin-digit">6</span
+                ><span class="latin-letter">li</span
+                ><span class="latin-digit">6</span
+                ><span class="latin-letter">v</span
+                ><span class="latin-digit">6</span>
+                <span class="latin-letter">it or not</span>
+              </h2>
+              <p>이상민&nbsp;배현준</p>
+            </div>
+            <p>
+              사타니즘은 진원지도<span class="latin-symbol">,</span> 출처도
+              불분명한 실들이 얼기설기 엮인 음모론이다<span class="latin-symbol"
+                >.</span
+              >
+              진에서 단서를 찾아 웹에 검색해 보자<span class="latin-symbol"
+                >.</span
+              >
+              그렇게 마주하게 될 이야기는<span class="latin-symbol">…</span>
+              믿거나 말거나<span class="latin-symbol">!</span>
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title"
+                  ><span class="latin-letter">B</span
+                  ><span class="latin-digit">6</span
+                  ><span class="latin-letter">li</span
+                  ><span class="latin-digit">6</span
+                  ><span class="latin-letter">v</span
+                  ><span class="latin-digit">6</span>
+                  <span class="latin-letter">it or not</span></span
+                ><br />이상민&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-digit">3</span
+                ><span class="latin-letter">mann</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-letter">e</span><br />배현준&nbsp;<span
+                  class="latin-symbol"
+                  >@</span
+                ><span class="latin-letter">hyunjoooon</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-letter">bae</span>
+              </p>
+              <p>
+                <span class="latin-digit">120</span
+                ><span class="latin-symbol">×</span
+                ><span class="latin-digit">103</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-digit">9</span>㎜<br />백색모조지
+                <span class="latin-digit">80</span
+                ><span class="latin-letter">g</span
+                ><span class="latin-symbol">,</span> 아트지
+                <span class="latin-digit">100</span
+                ><span class="latin-letter">g</span
+                ><span class="latin-symbol">,</span> 스노우지
+                <span class="latin-digit">100</span
+                ><span class="latin-letter">g</span><br /><span
+                  class="latin-letter"
+                  >SM</span
+                ><span class="latin-digit">3</span>견출명조<span
+                  class="latin-symbol"
+                  >,</span
+                >
+                <span class="latin-letter">Coral Pixels</span>
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter"
+                  >Apple SD</span
+                >
+                산돌고딕 <span class="latin-letter">Neo</span
+                ><span class="latin-symbol">,</span>
+                <span class="latin-letter">Coral Pixels</span>
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    음모론은 출처 불명의 정보들이 뒤섞여 하나의 이론으로
+                    완성되어 가는 경향이 있다<span class="latin-symbol">.</span>
+                    사타니즘<span class="latin-symbol">(</span
+                    ><span class="latin-letter">Satanism</span
+                    ><span class="latin-symbol">)</span>을 소재로<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    선형적인 웹과 비선형적인 책을 만들었다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    추가되고 갱신되는 정보와 뒤섞이는 증언과 이야기 조각들이
+                    느슨한 연결고리를 만든다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    선형<span class="latin-symbol">-</span>비선형 특성을 어떻게
+                    해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    팀에서 뽑은 특성은 선형<span class="latin-symbol">-</span
+                    >비선형이다<span class="latin-symbol">.</span> 음모론 자체가
+                    참과 거짓의 경계가 모호한 구조를 지닌다는 점에서
+                    착안하여<span class="latin-symbol">,</span> 일반적으로 진은
+                    선형<span class="latin-symbol">,</span> 웹은 비선형이라는
+                    통념을 뒤집어 두 매체의 역할을 맞바꿈으로써 모호함을
+                    강화하고자 하였다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    진은 세 면에서 페이지가 불규칙하게 교차되는 비선형적인
+                    매체로<span class="latin-symbol">,</span> 웹은 정해진 순서에
+                    따라 새로운 정보가 추가되는 선형적인 매체로 설계하였다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    진에서 등장하는 키워드를 웹에 입력하면 정보를 찾을 수
+                    있어<span class="latin-symbol">,</span> 탐색 과정을
+                    직관적으로 체험하게 하였다<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell-item">
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>
+                <span class="latin-symbol">○○</span>에서
+                <span class="latin-symbol">○○</span>까지
+              </h2>
+              <p>정유주&nbsp;김나영</p>
+            </div>
+            <p>
+              김나영과 정유주의 대화를 녹음해서 기록하는 과정에서<span
+                class="latin-symbol"
+                >,</span
+              >
+              말은 맥락과 뜻이 불명확한 텍스트로 인식되어 고정된다<span
+                class="latin-symbol"
+                >.</span
+              >
+              맥락 없는 웹과 모호한 문장의 진으로 음성 전사 텍스트에서 발견된
+              불완전성을 드러낸다<span class="latin-symbol">.</span>
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title">○○에서 ○○까지</span
+                ><br />정유주&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-digit">1</span
+                ><span class="latin-letter">n</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-letter">uzzu</span><br />김나영&nbsp;<span
+                  class="latin-symbol"
+                  >@</span
+                ><span class="latin-letter">lcinna</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-letter">o</span>
+              </p>
+              <p>
+                <span class="latin-digit">108</span
+                ><span class="latin-symbol">×</span
+                ><span class="latin-digit">210</span>㎜<br />스노우지
+                <span class="latin-digit">150</span
+                ><span class="latin-letter">g</span
+                ><span class="latin-symbol">,</span> 스노우지
+                <span class="latin-digit">250</span
+                ><span class="latin-letter">g</span><br /><span
+                  class="latin-letter"
+                  >SM</span
+                >
+                디나루<span class="latin-symbol">,</span>
+                <span class="latin-letter">Noto Sans Mono</span>
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter">SM</span>
+                디나루<span class="latin-symbol">,</span>
+                <span class="latin-letter">Noto Sans Mono</span>
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    김나영과 정유주 두 사람이 의식의 흐름대로 나눈 이야기를 진과
+                    웹으로 엮는다<span class="latin-symbol">.</span> 두 사람의
+                    이야기를 녹음해서 기록하는 과정에서<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    말은 불완전한 텍스트로 변환되어 고정된다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    녹음이라는 행위에서 발견된 불완전성을 진과 웹에서
+                    드러낸다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    선형<span class="latin-symbol">-</span>비선형 특성을 어떻게
+                    해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    각 매체의 기본적인 특징인 선형성과 비선형을 강조하면서<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    다른 매체가 있어야만 의미가 완전해질 수 있도록 한다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    진은 대화의 전체 흐름이 드러나지만 내용을 파악할 수
+                    없고<span class="latin-symbol">,</span> 웹은 각자의 발화
+                    내용을 그대로 볼 수 있지만 순서가 존재하지 않는다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    진과 웹에서 텍스트 박스 속 발화는 동일한 내용을 다루고
+                    있다<span class="latin-symbol">.</span> 그러나 진의 불완전한
+                    텍스트에서는 온전한 내용을 파악할 수 없고 웹의 온전한 텍스트
+                    또한 맥락과 분리되어<span class="latin-symbol">,</span>
+                    서로가 없다면 온전한 내용을 파악할 수 없다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cell_2">
+        <div class="cell-item">
+          <div class="explanation">
+            <img
+              src="source/image/1_Fixability_nonfixability.webp"
+              width="90%"
+              alt="고정성/시간성"
+            />
+            <h2>고정성 | 시간성</h2>
+            <p>
+              어떤 텍스트는 한 번 완성되면 변하지 않는 형태로 고정되고<span
+                class="latin-symbol"
+                >,</span
+              >
+              어떤 텍스트는 끊임없이 변화하며 흘러간다<span class="latin-symbol"
+                >.</span
+              >
+              텍스트는 정보를 보존하기도<span class="latin-symbol">,</span>
+              끊임없이 새롭게 생산하기도 한다<span class="latin-symbol">.</span>
+            </p>
+          </div>
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>
+                <span class="latin-letter">Part</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-digit">2</span>
+              </h2>
+              <p>유하은&nbsp;이효담</p>
+            </div>
+            <p>
+              유행은 단순히 과거의 스타일이 똑같이 돌아오는 복제가 아니라<span
+                class="latin-symbol"
+                >,</span
+              >
+              현대의 맥락과 결합되어 새로워지는 재해석이다<span
+                class="latin-symbol"
+                >.</span
+              >
+              패션 아이템이 시간의 흐름 속에서 어떻게 해체되고 다시 조립되는지
+              탐구한다<span class="latin-symbol">.</span>
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title"
+                  ><span class="latin-letter">Part</span
+                  ><span class="latin-symbol">.</span
+                  ><span class="latin-digit">2</span></span
+                ><br />유하은&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-digit">5</span
+                ><span class="latin-letter">y</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-letter">u</span
+                ><span class="latin-digit">19</span><br />이효담&nbsp;<span
+                  class="latin-symbol"
+                  >@</span
+                ><span class="latin-letter">oyapeei</span>
+              </p>
+              <p>
+                <span class="latin-digit">128</span
+                ><span class="latin-symbol">×</span
+                ><span class="latin-digit">182</span>㎜<br />매쉬멜로우 화이트
+                <span class="latin-digit">128</span
+                ><span class="latin-letter">g</span><br /><span
+                  class="latin-letter"
+                  >Helvetica Neue</span
+                ><span class="latin-symbol">,</span>
+                <span class="latin-letter">Onul</span> 담소<span
+                  class="latin-symbol"
+                  >,</span
+                >
+                <span class="latin-letter">Onul</span> 한체<span
+                  class="latin-symbol"
+                  >,</span
+                >
+                <span class="latin-letter">Onul</span> 점점
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter"
+                  >Sandoll</span
+                >
+                고딕<span class="latin-letter">Neo</span
+                ><span class="latin-symbol">,</span>
+                <span class="latin-letter">Space Grotesk</span
+                ><span class="latin-symbol">,</span>
+                <span class="latin-letter">VT</span
+                ><span class="latin-digit">323</span>
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    유행했던 패션 아이템이 다시 돌아왔다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    <span class="latin-letter">Part</span
+                    ><span class="latin-symbol">.</span
+                    ><span class="latin-digit">2</span>는 과거의 복제가
+                    아닌<span class="latin-symbol">,</span>
+                    현대의 맥락과 결합한 새로운
+                    <span class="latin-letter">Part</span
+                    ><span class="latin-symbol">.</span
+                    ><span class="latin-digit">1</span>이다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    진은 과거의 패션 아이템과 현재의 재해석을 기록하고<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    웹에서는 추억의 게임을 통해 그 변화를 직접 체험할 수
+                    있다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    고정성<span class="latin-symbol">-</span>시간성 특성을
+                    어떻게 해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    페이지는 연결된 채 고정되어 있다<span class="latin-symbol"
+                      >.</span
+                    >
+                    고정된 진에서는 돌아온 패션 아이템과 그에 얽힌 개인의
+                    이야기를 기록한다<span class="latin-symbol">.</span>
+                    사용자는 웹을 통해 직접 시간에 접속해 과거의 패션 아이템이
+                    현재로 다시 돌아오는 과정에서 발생한 변화를 경험한다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    웹과 진은 코드로 연결되어 있다<span class="latin-symbol"
+                      >.</span
+                    >
+                    사용자는 진을 읽으며 각 파트에 숨겨진 코드를 찾고<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    코드를 통해 웹의 해당 파트로 입장한다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    웹에서는 진에서 읽은 내용을 바탕으로
+                    <span class="latin-letter">Part</span
+                    ><span class="latin-symbol">.</span
+                    ><span class="latin-digit">1</span>과
+                    <span class="latin-letter">Part</span
+                    ><span class="latin-symbol">.</span
+                    ><span class="latin-digit">2</span>를 오가며 과거와 현재의
+                    패션을 직접 경험한다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell-item">
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>
+                <span class="latin-digit">5</span>
+                <span class="latin-letter">recipes of summer</span>
+              </h2>
+              <p>이승연&nbsp;전다현</p>
+            </div>
+            <p>
+              재료의 겹침과 섞임<span class="latin-symbol">,</span> 결합하는
+              순서와 방식에 따라 달라지는 결과물을 탐구한다<span
+                class="latin-symbol"
+                >.</span
+              >
+              여름과 관련된 <span class="latin-digit">5</span>가지 음식의
+              레시피를 통해 재료의 결합 과정과 그에 따른 다양한 결과물을 진과
+              웹으로 보여준다<span class="latin-symbol">.</span>
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title"
+                  ><span class="latin-digit">5</span>
+                  <span class="latin-letter">recipes of summer</span></span
+                ><br />이승연&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">lucylucky</span
+                ><span class="latin-digit">25</span><br />전다현&nbsp;<span
+                  class="latin-symbol"
+                  >@</span
+                ><span class="latin-letter">dahnnue</span>
+              </p>
+              <p>
+                <span class="latin-digit">160</span
+                ><span class="latin-symbol">×</span
+                ><span class="latin-digit">230</span>㎜<br />반누보
+                <span class="latin-digit">122</span
+                ><span class="latin-letter">g</span
+                ><span class="latin-symbol">,</span> 트레싱지<br /><span
+                  class="latin-letter"
+                  >Orbit</span
+                ><span class="latin-symbol">,</span>
+                <span class="latin-letter">AG</span> 안상수체
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter"
+                  >Orbit</span
+                ><span class="latin-symbol">,</span>
+                <span class="latin-letter">AG</span> 안상수체
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    여름과 잘 어울리는 <span class="latin-digit">5</span>가지
+                    음식의 레시피를 주제로 재료의 겹침과 섞임<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    결합하는 순서와 방식에 따라 달라지는 결과물을 탐구한다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    기하학적으로 단순화된 음식의 그래픽을 진에서는 겹치고
+                    접으며<span class="latin-symbol">,</span> 웹에서는 마우스를
+                    움직이며 하나의 요리를 완성한다<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    고정성<span class="latin-symbol">-</span>시간성 특성을
+                    어떻게 해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    팀에서 뽑은 특성은 고정성 시간성이다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    진과 웹 속의 그래픽은 고정되어 있다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    진에서는 종이 위의 그래픽의 겹침과 결합을 통해<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    웹에서는 화면 위에서 움직이는 그래픽의 변화를 통해 고정된
+                    그래픽이 시간 속 움직임을 통해 어떻게 변화하고 결합하여
+                    요리를 완성하는 지 보여준다<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    두 매체는 각자의 방식으로 레시피를 설명하고 재료를 결합하며
+                    완성한다<span class="latin-symbol">.</span> 진에서는 종이의
+                    움직임으로<span class="latin-symbol">,</span> 웹에서는
+                    인터렉션을 이용하여 그래픽을 움직이며 요리를
+                    완성해나간다<span class="latin-symbol">.</span> 두 매체
+                    안에서 요리를 완성하며 결합하는 방식의 차이를
+                    탐색해본다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell-item">
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>
+                <span class="latin-letter">Hyper</span
+                ><span class="latin-symbol">-</span
+                ><span class="latin-letter">hole</span>
+              </h2>
+              <p>한수지&nbsp;김민주</p>
+            </div>
+            <p>
+              디지털 환경의 연결 방식을 기록에 적용해<span class="latin-symbol"
+                >,</span
+              >
+              서로의 글을 하이퍼텍스트 삼아 새로운 통로를 만들어가는
+              실험이다<span class="latin-symbol">.</span> 단서로 삼은 키워드는
+              기록과 기록을 잇는 구멍이 되고<span class="latin-symbol">,</span>
+              진과 웹은 그 구멍을 매개로 연결된다<span class="latin-symbol"
+                >.</span
+              >
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title"
+                  ><span class="latin-letter">Hyper</span
+                  ><span class="latin-symbol">-</span
+                  ><span class="latin-letter">hole</span></span
+                ><br />한수지&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">suyaki</span
+                ><span class="latin-digit">22</span><br />김민주&nbsp;<span
+                  class="latin-symbol"
+                  >@</span
+                ><span class="latin-letter">o</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-letter">ooki</span
+                ><span class="latin-digit">2</span>
+              </p>
+              <p>
+                <span class="latin-digit">180</span
+                ><span class="latin-symbol">×</span
+                ><span class="latin-digit">128</span>㎜<br />티엠보스
+                <span class="latin-digit">116</span
+                ><span class="latin-letter">g</span
+                ><span class="latin-symbol">,</span> 썬레이드
+                <span class="latin-digit">79</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-digit">1</span
+                ><span class="latin-letter">g</span><br /><span
+                  class="latin-letter"
+                  >SM</span
+                ><span class="latin-digit">3</span> 신신명조<span
+                  class="latin-symbol"
+                  >,</span
+                >
+                <span class="latin-letter">Panama monospace</span
+                ><span class="latin-symbol">,</span>
+                <span class="latin-letter">SM</span
+                ><span class="latin-digit">3</span> 신중고딕
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter">SM</span
+                ><span class="latin-digit">3</span> 신신명조<span
+                  class="latin-symbol"
+                  >,</span
+                >
+                <span class="latin-letter">Panama monospace</span
+                ><span class="latin-symbol">,</span>
+                <span class="latin-letter">SM</span
+                ><span class="latin-digit">3</span> 신중고딕
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    디지털 환경에서 우리의 사고는 검색 기록<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    이미지<span class="latin-symbol">,</span> 음악<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    게시물 같은 다양한 정보들을 연결하며 이루어진다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    우리는 이 연결 방식을 글쓰기로 옮겨<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    서로의 글에서 선택된 키워드를 구멍으로 삼아 새로운 기록을
+                    만들어간다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    고정성<span class="latin-symbol">-</span>시간성 특성을
+                    어떻게 해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    구멍은 서로의 기록을 연결하는 동시에<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    진과 웹이 서로 다른 방식으로 기록을 구성하는 지점이다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    진은 기록을 하나의 흐름으로 고정해 선택한 맥락을
+                    제시하고<span class="latin-symbol">,</span> 웹에서는 각각의
+                    기록이 독립적으로 존재하며 독자가 자신만의 순서와 맥락을
+                    만든다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    진은 텍스트로 서사의 맥락을 고정된 순서로 전하고<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    웹은 이미지로 그 단서를 비선형적으로 탐색하게 한다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    어느 쪽에서 출발하든 서로를 향한 통로가 되어<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    함께 하나의 이야기를 완성해간다<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell-item">
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>텍스트 시침질</h2>
+              <p>신준성&nbsp;황예준</p>
+            </div>
+            <p>
+              모든 텍스트 생산은 기존 텍스트의 편집일 뿐이라는 상호텍스트성의
+              논리를 따라<span class="latin-symbol">,</span> 탈맥락화된
+              텍스트들이 느슨하게 얽히고 해체되는 짜임을 드러내고자 유희적인
+              <span class="latin-symbol">‘</span>텍스트 시침질<span
+                class="latin-symbol"
+                >’</span
+              >을 시도한다<span class="latin-symbol">.</span>
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title">텍스트 시침질</span
+                ><br />신준성&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">junseongshene</span
+                ><br />황예준&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">yeazoony</span>
+              </p>
+              <p>
+                <span class="latin-digit">210</span
+                ><span class="latin-symbol">×</span
+                ><span class="latin-digit">297</span>㎜<br />복사용지
+                <span class="latin-digit">80</span
+                ><span class="latin-letter">g</span><br /><span
+                  class="latin-letter"
+                  >New SM</span
+                >
+                세명조<span class="latin-symbol">,</span>
+                <span class="latin-letter">SM</span
+                ><span class="latin-digit">3</span> 나루<span
+                  class="latin-symbol"
+                  >,</span
+                >
+                <span class="latin-letter">Fort</span>
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter"
+                  >New SM</span
+                >
+                세명조<span class="latin-symbol">,</span>
+                <span class="latin-letter">SM</span
+                ><span class="latin-digit">3</span> 나루<span
+                  class="latin-symbol"
+                  >,</span
+                >
+                <span class="latin-letter">Fort</span>
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    상호텍스트성의 논리에 따라<span class="latin-symbol"
+                      >,</span
+                    >
+                    재료로 삼은 텍스트들이 느슨히 엮이는 관계를 시각적으로
+                    드러내고자 했다<span class="latin-symbol">.</span> 진에서는
+                    관람객이 텍스트가 담긴 핸드아웃을 직접 직조하고<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    웹에서는 텍스트 일부를 드래그해 무한히 엮을 수 있다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    고정성<span class="latin-symbol">-</span>시간성 특성을
+                    어떻게 해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    고정성과 시간성을 뽑았다<span class="latin-symbol">.</span>
+                    진은 제한된 범위 내에서 텍스트의 관계를 밝히기 좋고<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    웹은 계속해서 갱신되는 외부의 텍스트를 끌어와 재료와
+                    교차시킬 수 있다<span class="latin-symbol">.</span> 이
+                    때문에<span class="latin-symbol">—</span>의도하진
+                    않았으나<span class="latin-symbol">—</span>전시 과정에서
+                    진은 소진되고 웹은 축적되는 구조가 만들어졌다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    두 매체를 독립적인 것으로 두고<span class="latin-symbol"
+                      >,</span
+                    >
+                    서로 다른 방식으로 풀어내는 데 집중했다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    같은 주제를 공유한다면 자연히 엉겨 붙으리라 믿었기
+                    때문이다<span class="latin-symbol">.</span> 굳이 나누자면
+                    진은 수집한 텍스트들 간의 관계를<span class="latin-symbol"
+                      >,</span
+                    >
+                    웹은 그 텍스트들과 바깥 맥락이 만나는 지점을 살핀다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cell_3">
+        <div class="cell-item">
+          <div class="explanation">
+            <img
+              src="source/image/3_materiality_virtuality.webp"
+              width="90%"
+              alt="물질성/가상성"
+            />
+            <h2>물질성 | 가상성</h2>
+            <p>
+              텍스트는 하나의 물리적인 실체로 존재하기도 하고<span
+                class="latin-symbol"
+                >,</span
+              >
+              데이터로 변환되어 서버와 통신망 위에서 가상으로 존재하기도
+              한다<span class="latin-symbol">.</span> 각각의 매체와 환경에서
+              문자는 가장 효과적인 형태로 변형되고 확장된다<span
+                class="latin-symbol"
+                >.</span
+              >
+            </p>
+          </div>
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>고등어회</h2>
+              <p>안상현&nbsp;이유림</p>
+            </div>
+            <p>
+              우리는 자기 편향이 강화될 수밖에 없는 환경 속에서 살아가고
+              있다<span class="latin-symbol">.</span> 알고리즘의 필터 버블은
+              유사 관점을 반복적으로 노출하여 우리를 가두고 있다<span
+                class="latin-symbol"
+                >. "</span
+              >당신에게 맹한 눈까리의 비린내를 맡게 하고 싶어요<span
+                class="latin-symbol"
+                >."</span
+              >
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title">고등어회</span
+                ><br />안상현&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">patrick</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-letter">star</span>_<span
+                  class="latin-letter"
+                  >ahn</span
+                ><br />이유림&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-digit">2</span
+                ><span class="latin-letter">u</span>_<span class="latin-letter"
+                  >ring</span
+                >
+              </p>
+              <p>
+                <span class="latin-digit">148</span
+                ><span class="latin-symbol">×</span
+                ><span class="latin-digit">210</span>㎜<br />스노우지
+                <span class="latin-digit">180</span
+                ><span class="latin-letter">g</span><br />산돌<span
+                  class="latin-symbol"
+                  >,</span
+                >
+                <span class="latin-letter">SM</span
+                ><span class="latin-digit">3</span>신신명조<span
+                  class="latin-symbol"
+                  >,</span
+                >
+                <span class="latin-letter">HY</span>필기체
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br />고운 바탕<span class="latin-symbol"
+                  >,</span
+                >
+                <span class="latin-letter">J</span>송명체
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    싸구려 가죽 가방을 구매했다가 정체불명의 비린내가 빠지지
+                    않은 이유림의 경험에서 출발한다<span class="latin-symbol"
+                      >.</span
+                    >
+                    지속적으로 코에 맴도는 고등어의 비린내와 필터버블의 유사성에
+                    주목하여 고등어를 모티프로 시각화했다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    물질성<span class="latin-symbol">-</span>가상성 특성을
+                    어떻게 해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    물질성과 가상성<span class="latin-symbol">.</span>
+                    필터버블을 극대화하는 웹의 가상성에 집중했다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    웹의 가상성은 필터버블의 몰입도를 극대화한다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    반면 진의 물질성은 필터버블을 구현하는데에 한계가 있다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    각각의 매체는 최대한으로 필터버블을 시각화한다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    이때<span class="latin-symbol">,</span> 웹의 필터버블은
+                    일상적이지만 진의 필터버블은 그 방식이 매우 과장되어
+                    일상에서는 보기 힘듦을 보여준다<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell-item">
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2><span class="latin-letter">EDITion</span></h2>
+              <p>김다현&nbsp;김나현</p>
+            </div>
+            <p>
+              하나의 원본은 물질과 가상<span class="latin-symbol">,</span> 서로
+              다른 매체를 거치며 끊임없이 편집된다<span class="latin-symbol"
+                >.</span
+              >
+              진과 웹으로 갈라진 두 편집본을 오가며<span class="latin-symbol"
+                >,</span
+              >
+              우리가 마주하는 것이 과연 온전한 원본인지 질문한다<span
+                class="latin-symbol"
+                >.</span
+              >
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title"
+                  ><span class="latin-letter">EDITion</span></span
+                ><br />김다현&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">dahnn</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-letter">ee</span><br />김나현&nbsp;<span
+                  class="latin-symbol"
+                  >@</span
+                ><span class="latin-letter">bonenlem</span>
+              </p>
+              <p>
+                <span class="latin-digit">145</span>
+                <span class="latin-symbol">×</span>
+                <span class="latin-digit">230</span>㎜<br />프런티어터프
+                <span class="latin-digit">80</span
+                ><span class="latin-letter">g</span><br /><span
+                  class="latin-letter"
+                  >Onul</span
+                >삼화명조<span class="latin-symbol">,</span
+                ><span class="latin-letter">J</span>직지고딕<span
+                  class="latin-symbol"
+                  >,</span
+                >윤명조 <span class="latin-digit">340</span>
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter">Onul</span
+                >삼화명조<span class="latin-symbol">,</span>
+                <span class="latin-letter">Pretendard</span
+                ><span class="latin-symbol">,</span>
+                <span class="latin-letter">SM</span
+                ><span class="latin-digit">3</span>신신명조
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    신문<span class="latin-symbol">·</span>일기<span
+                      class="latin-symbol"
+                      >·</span
+                    >지도 등 각 매체의 물성을 바탕으로 삭제<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    크롭<span class="latin-symbol">,</span> 확대<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    반복<span class="latin-symbol">,</span> 재배열을 주요 그래픽
+                    모티프로 사용한다<span class="latin-symbol">.</span> 편집이
+                    진행될수록 정보의 양과 크기<span class="latin-symbol"
+                      >,</span
+                    >
+                    여백과 배치를 변화시켜 편집이 시선을 유도하고 의미를
+                    재구성하는 과정을 시각화한다<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    물질성<span class="latin-symbol">-</span>가상성 특성을
+                    어떻게 해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    진은 종이의 질감과 넘김 같은 물질성으로 편집의 흔적을 직접
+                    경험하게 하고<span class="latin-symbol">,</span> 웹은
+                    스크롤과 전환<span class="latin-symbol">,</span> 움직임 같은
+                    가상성으로 정보가 유동적으로 재구성되는 과정을 보여준다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    같은 주제를 상반된 매체 특성으로 풀어 편집이 다르게 작동함을
+                    드러낸다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    진과 웹은 같은 주제와 유사한 편집 방식을 공유하지만<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    각 매체의 관점에 따라 서로 다른 결과를 만든다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    두 매체를 나란히 보여주며 같은 원본도 무엇을 선택하고
+                    강조하느냐에 따라 전혀 다르게 해석되고 편집될 수 있음을
+                    드러낸다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell-item">
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>
+                엄마를 동결건조 하는 방법 <span class="latin-symbol">—</span
+                ><span class="latin-letter">
+                  How to put my mom in a fridge</span
+                >
+              </h2>
+              <p>김수현&nbsp;안가은</p>
+            </div>
+            <p>
+              소중한 대상을 영원히 보존하고자 하는 욕구는 시대를 막론하고
+              존재한다<span class="latin-symbol">.</span> 이 작업에서
+              <span class="latin-symbol">‘</span>엄마를 냉장고에 넣어서라도
+              보존하고 싶은 욕구<span class="latin-symbol">’</span>는 스크린과
+              지면에서 해소된다<span class="latin-symbol">.</span> 이를 통해
+              대상을 보존하고 기록하는 서로 다른 방식을 탐구한다<span
+                class="latin-symbol"
+                >.</span
+              >
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title"
+                  >엄마를 동결건조 하는 방법 <span class="latin-symbol">—</span
+                  ><span class="latin-letter">
+                    How to put my mom in a fridge</span
+                  ></span
+                ><br />김수현&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">suhyeon</span
+                ><span class="latin-digit">0414</span><br />안가은&nbsp;<span
+                  class="latin-symbol"
+                  >@</span
+                ><span class="latin-letter">gaeun</span>_<span
+                  class="latin-letter"
+                  >an</span
+                >
+              </p>
+              <p>
+                <span class="latin-digit">100</span
+                ><span class="latin-symbol">×</span
+                ><span class="latin-digit">145</span>㎜<br />두성 디자이너스
+                칼라<br /><span class="latin-letter">Onul</span> 단조<span
+                  class="latin-symbol"
+                  >,</span
+                >
+                <span class="latin-letter">Akzidenz Grotesk</span>
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter"
+                  >Onul</span
+                >
+                단조<span class="latin-symbol">,</span>
+                <span class="latin-letter">Akzidenz Grotesk</span>
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    동결건조란 물질을 장기간 보관하는 보존법이다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    박제된 박물관의 미라는
+                    <span class="latin-symbol">‘</span>우리 엄마 동결건조해<span
+                      class="latin-symbol"
+                      >’</span
+                    >
+                    와 같은 <span class="latin-symbol">‘</span>밈<span
+                      class="latin-symbol"
+                      >’</span
+                    >으로 재탄생하였다<span class="latin-symbol">.</span> 이
+                    작업에서 음식을 분류하고<span class="latin-symbol">,</span>
+                    보존하는 냉장고 속 사각형의 구역들은 스크린과 지면으로
+                    이어진다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    물질성<span class="latin-symbol">-</span>가상성 특성을
+                    어떻게 해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    물질성과 가상성<span class="latin-symbol">. ‘</span>우리
+                    엄마<span class="latin-symbol">’</span>를 구성하는 요소들은
+                    두 매체에서 재구성된다<span class="latin-symbol">.</span>
+                    인쇄된 물질이나 코드로 치환된 가상의 언어를 우리 엄마라고 할
+                    수 있는가<span class="latin-symbol">?</span> 동일한 데이터를
+                    두 가지 방식으로 보존하는 과정을 통해 각 매체의 특성을
+                    보여준다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    동일한 주제와 데이터를 다른 매체로 다루는 과정에서
+                    자연스럽게 두 매체의 차이가 드러난다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    모든 세부사항이 보존되지만 고정된 진과 관람자의 행위를 통해
+                    정보가 제공되는 웹은 정보의 양뿐 아니라 정보를 보존하는
+                    방식에서도 차이를 보인다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell-item">
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>
+                <span class="latin-letter">Ever Dream This Man</span
+                ><span class="latin-symbol">?</span>
+              </h2>
+              <p>유다인&nbsp;유하령</p>
+            </div>
+            <p>
+              디스맨으로부터 살아남기 위해 만들어진 비공식 안내서와 기록
+              아카이브<span class="latin-symbol">.</span> 꿈 속에서만 존재하던
+              그가 꿈과 현실의 경계에서 정보를 실시간으로 조작하기 시작한다<span
+                class="latin-symbol"
+                >.</span
+              >
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title"
+                  ><span class="latin-letter">Ever Dream This Man</span
+                  ><span class="latin-symbol">?</span></span
+                ><br />유다인&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">uda</span
+                ><span class="latin-digit">1</span
+                ><span class="latin-letter">n</span><br />유하령&nbsp;<span
+                  class="latin-symbol"
+                  >@</span
+                ><span class="latin-letter">ghohast</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-letter">arc</span>
+              </p>
+              <p>
+                <span class="latin-digit">80</span
+                ><span class="latin-symbol">×</span
+                ><span class="latin-digit">110</span>㎜<br />아도니스러프 화이트
+                <span class="latin-digit">70</span
+                ><span class="latin-letter">g</span><br /><span
+                  class="latin-letter"
+                  >HY</span
+                >둥근고딕
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter"
+                  >Pretendard</span
+                ><span class="latin-symbol">,</span>
+                <span class="latin-letter">Apple SD</span> 산돌고딕
+                <span class="latin-letter">Neo</span>
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    디스맨은 사람들의 꿈에 반복적으로 등장한다고 알려진
+                    정체불명의 존재다<span class="latin-symbol">.</span> 이
+                    존재에 관한 이야기를 비공식 생존 규칙과 아카이브 형식으로
+                    풀어내며<span class="latin-symbol">,</span> 규칙서의 도식과
+                    일러스트<span class="latin-symbol">,</span> 사진과 영상 등의
+                    기록물을 통해 디스맨의 세계를 현실처럼 마주하도록 한다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    물질성<span class="latin-symbol">-</span>가상성 특성을
+                    어떻게 해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    물질성과 가상성을 뽑았다<span class="latin-symbol">.</span>
+                    고정된 물질성을 지닌 진은 기존 정보를 모아 완성된
+                    결과물로<span class="latin-symbol">,</span> 변화하는
+                    가상성을 지닌 웹은 새로운 기록까지 모으며 지속적으로
+                    업데이트되는 위키 페이지로 서로 다른 방식의 기록을
+                    보여준다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    진은 디스맨의 기본 정보와 생존 규칙을 담은 선행
+                    안내서이며<span class="latin-symbol">,</span> 웹은 꿈의 목격
+                    기록과 증거를 담은 후행 아카이브이다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    관람자는 진을 숙지한 뒤 웹을 관람하고<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    변화하는 기록 속에서 디스맨의 개입을 발견한다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cell_4">
+        <div class="cell-item">
+          <div class="explanation">
+            <img
+              src="source/image/4_Ownership_Access.webp"
+              width="90%"
+              alt="소유/접속"
+            />
+            <h2>소유 | 접속</h2>
+            <p>
+              텍스트를 접하는 방식에는 직접 소유하고 보관하는 방식과<span
+                class="latin-symbol"
+                >,</span
+              >
+              누구나 접속할 수 있는 플랫폼을 이용하는 방식이 있다<span
+                class="latin-symbol"
+                >.</span
+              >
+              하지만 소유가 영원한 보존을<span class="latin-symbol">,</span>
+              접속이 보편적인 접근을 보장하는 것은 아니다<span
+                class="latin-symbol"
+                >.</span
+              >
+            </p>
+          </div>
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>
+                축적하는 종이<span class="latin-symbol">,</span> 갱신되는 웹
+              </h2>
+              <p>장예원&nbsp;강다현</p>
+            </div>
+            <p>
+              종이와 웹 간의 매체적 차이는 그 속에서 시간이 작동하고 드러나는
+              방식을 변화시킨다<span class="latin-symbol">.</span> 돌이킬 수
+              없는 물리적 흔적들을 축적하는 종이와 끊임없이 현재로 갱신되는 웹은
+              어떤 시간을 겪고 있을까<span class="latin-symbol">?</span>
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title"
+                  >축적하는 종이<span class="latin-symbol">,</span> 갱신되는
+                  웹</span
+                ><br />장예원&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">laundry</span
+                ><span class="latin-digit">0</span
+                ><span class="latin-letter">w</span
+                ><span class="latin-digit">0</span><br />강다현&nbsp;<span
+                  class="latin-symbol"
+                  >@</span
+                ><span class="latin-letter">hnieeiz</span>
+              </p>
+              <p>
+                <span class="latin-digit">148</span
+                ><span class="latin-symbol">×</span
+                ><span class="latin-digit">210</span>㎜<br />미색모조지
+                <span class="latin-digit">80</span
+                ><span class="latin-letter">g</span> 스노우지
+                <span class="latin-digit">200</span
+                ><span class="latin-letter">g</span><br /><span
+                  class="latin-letter"
+                  >Sandoll</span
+                >제주명조<span class="latin-symbol">,</span>
+                <span class="latin-letter">Sandoll</span>본명조
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter"
+                  >Sandoll</span
+                >
+                고딕<span class="latin-letter">Neo</span
+                ><span class="latin-digit">1</span>
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    <span class="latin-symbol">‘</span>시간<span
+                      class="latin-symbol"
+                      >’</span
+                    >이라는 절대적 조건을 수용하고 드러내는 방식은 매체마다
+                    다르다<span class="latin-symbol">.</span> 진에서는 인쇄와
+                    사용<span class="latin-symbol">,</span> 구김과 마모 등
+                    종이의 물성에서 비롯되는 물리적 흔적에<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    웹에서는 데이터의 수정과 오류 등 디지털의 가변성에 주목하여
+                    두 매체가 경험하는 시간을 시각화한다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    소유<span class="latin-symbol">-</span>접속 특성을 어떻게
+                    해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    뽑은 특성은 소유와 접속이다<span class="latin-symbol"
+                      >.</span
+                    >
+                    진의 <span class="latin-symbol">‘</span>소유함<span
+                      class="latin-symbol"
+                      >’</span
+                    >에서 비롯되는 시간을 지면 위 물리적 흔적의 축적으로<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    웹의 <span class="latin-symbol">‘</span>접속함<span
+                      class="latin-symbol"
+                      >’</span
+                    >에서 발생하는 시간을 데이터와 화면의 갱신으로 해석하여<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    각 매체 안에서 시간이 작동하는 방식을 탐구했다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    진과 웹에서 보여지는 시간의 양상이 서로 반대된다는 측면에서
+                    내용은 대립적으로 수록되지만<span class="latin-symbol"
+                      >,</span
+                    >
+                    작품 속 역할은 대등하게 부여된다<span class="latin-symbol"
+                      >.</span
+                    >
+                    진과 웹 모두 개별적으로 각자의 시간을 설명하고<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    동시에 관람객들이 이를 체험할 수 있도록 만들어졌다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell-item">
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>
+                일면수련진경<span class="latin-symbol">—</span>한 그릇의 라면
+              </h2>
+              <p>정준용&nbsp;박혜원</p>
+            </div>
+            <p>
+              우리는 신에게 빌고 기리는 의식<span class="latin-symbol">(</span
+              >儀式<span class="latin-symbol">)</span>에서 점점 멀어져 왔다고
+              생각하지만<span class="latin-symbol">,</span> 우리는 여전히
+              무의식적으로 의식을 행한다<span class="latin-symbol">.</span> 이
+              작업은 라면을 끓이는 지극히 일상적인 행위에서 이어지는 그 무의식적
+              의식에 대해 이야기한다<span class="latin-symbol">.</span>
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title"
+                  >일면수련진경<span class="latin-symbol">—</span>한 그릇의
+                  라면</span
+                ><br />정준용&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">nopaaiin</span
+                ><br />박혜원&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">hyewon</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-letter">hihi</span>
+              </p>
+              <p>
+                <span class="latin-digit">286</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-digit">5</span
+                ><span class="latin-symbol">×</span
+                ><span class="latin-digit">142</span
+                ><span class="latin-symbol">.</span
+                ><span class="latin-digit">8</span>㎜<br />스펙트라
+                <span class="latin-letter">p</span
+                ><span class="latin-digit">53</span>
+                <span class="latin-digit">080</span
+                ><span class="latin-letter">g</span><br /><span
+                  class="latin-letter"
+                  >Onul</span
+                >
+                바람<span class="latin-symbol">,</span>
+                <span class="latin-letter">SM</span>견출명조
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter"
+                  >Onul</span
+                >
+                바람<span class="latin-symbol">,</span>
+                <span class="latin-letter">SM</span>견출명조
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    현대인의 일과도 여전히 의식<span class="latin-symbol"
+                      >(</span
+                    ><span class="latin-letter">ritual</span
+                    ><span class="latin-symbol">)</span>과 맞닿아 있다는
+                    생각에서 출발했다<span class="latin-symbol">.</span> 의식을
+                    주제로 도교 경전과 한국 무속에서 모티프를 얻었으며<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    부적<span class="latin-symbol">,</span> 내경도<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    경전 등의 형상이 웹이라는 새로운 세계로 접속하려는 속성과
+                    닮았다고 느꼈다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    소유<span class="latin-symbol">-</span>접속 특성을 어떻게
+                    해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    소유와 접속을 뽑았다<span class="latin-symbol">.</span>
+                    소유할 수도 있고 접속할 수도 있는 책과 웹의 상호보완성을
+                    생각한다<span class="latin-symbol">.</span> 부적의 부 자는
+                    부신 부로<span class="latin-symbol">,</span> 나뉜 두 조각이
+                    합쳐져 효력을 갖는 물체이다<span class="latin-symbol"
+                      >.</span
+                    >
+                    이를 참고하여 웹 양쪽에 진을 대보아야 완성되는 웹과 진의
+                    부합을 의도한다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    진은 경전의 형태를 따르며 라면 끓이기 수행의 전반을 담고
+                    있다<span class="latin-symbol">.</span> 웹은 이를 그래픽으로
+                    보조하여 독자가 진을 맞췄을 때 더 풍부한 시각적 설명을
+                    제공한다<span class="latin-symbol">.</span> 이로써 상호
+                    보완적이고 서로를 소유하고 접속해야 기능하는 두 요소로
+                    설정했다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell-item">
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>한 편의 영화를 놓치는 두 가지 방법</h2>
+              <p>한산&nbsp;최정빈</p>
+            </div>
+            <p>
+              같은 분량을 보더라도 생략을 스스로 선택했는지 타의로 놓쳤는지에
+              따라 감상 경험은 달라진다<span class="latin-symbol">.</span> 진은
+              소유한 채 선택하는 생략을<span class="latin-symbol">,</span> 웹은
+              접속 과정에서 겪게 되는 생략을 보여준다<span class="latin-symbol"
+                >.</span
+              >
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title"
+                  >한 편의 영화를 놓치는 두 가지 방법</span
+                ><br />한산&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">endcives</span
+                ><br />최정빈&nbsp;<span class="latin-symbol">@</span>_<span
+                  class="latin-letter"
+                  >jungbin</span
+                ><span class="latin-digit">22</span>
+              </p>
+              <p>
+                <span class="latin-digit">130</span
+                ><span class="latin-letter">x</span
+                ><span class="latin-digit">250</span>㎜<br />앤틱블랙
+                <span class="latin-digit">100</span
+                ><span class="latin-letter">g</span
+                ><span class="latin-symbol">,</span> 문켄퓨어러프
+                <span class="latin-digit">100</span
+                ><span class="latin-letter">g</span><br /><span
+                  class="latin-letter"
+                  >SM</span
+                >신중고딕<span class="latin-symbol">,</span>
+                <span class="latin-letter">SM</span>신명조<span
+                  class="latin-symbol"
+                  >,</span
+                >
+                <span class="latin-letter">SM</span>견출고딕
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter">SM</span
+                >신중고딕<span class="latin-symbol">,</span>
+                <span class="latin-letter">SM</span>신명조<span
+                  class="latin-symbol"
+                  >,</span
+                >
+                <span class="latin-letter">SM</span>견출고딕
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    같은 내용을 생략하더라도 내가 선택해 넘긴 것과 어쩔 수 없이
+                    놓친 것은 같은 감상일까<span class="latin-symbol">?</span>
+                    영화 <span class="tight-bracket-open">〈</span>유주얼
+                    서스펙트<span class="tight-bracket-close">〉</span>의
+                    장면<span class="latin-symbol">,</span> 대사<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    행동지문을 재료로 삼아 의도적 생략과 비의도적 생략의 차이를
+                    진과 웹으로 보여준다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    소유<span class="latin-symbol">-</span>접속 특성을 어떻게
+                    해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    소유와 접속을 주제로 한다<span class="latin-symbol">.</span>
+                    소유는 페이지를 스스로 넘기듯 전체 정보가 주어진 상태에서
+                    읽을 내용을 선택하고 생략할 수 있는 경험<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    접속은 찢어진 페이지처럼 허용된 정보만 받아들이며 생략을
+                    겪는 경험으로 해석했다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    진은 <span class="latin-symbol">‘</span>소유<span
+                      class="latin-symbol"
+                      >’</span
+                    >를 빽빽한 조판과 정보의 위계로 표현해 원하는 부분을 골라
+                    읽을 수 있게 했다<span class="latin-symbol">.</span> 웹은
+                    <span class="latin-symbol">‘</span>접속<span
+                      class="latin-symbol"
+                      >’</span
+                    >을 지나간 내용으로 돌아갈 수 없는 스크롤 구조와<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    눈 깜빡임에 따라 글자가 사라지는 인터랙션으로 구현했다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell-item">
+          <div class="cell-content">
+            <div class="cell-title">
+              <h2>행운록<span class="latin-symbol">—</span>行運錄</h2>
+              <p>정다정&nbsp;박유진</p>
+            </div>
+            <p>
+              현대에도 미신은 <span class="latin-symbol">‘</span>믿어서 손해 볼
+              것이 없다<span class="latin-symbol">’</span>는 인식 속에 여전히
+              남아 있다<span class="latin-symbol">. ‘</span>행운록<span
+                class="latin-symbol"
+                >(</span
+              >行運錄<span class="latin-symbol">)’</span>은 미신의 심리적 동기를
+              활용해<span class="latin-symbol">,</span> 누구나 쉽게 행<span
+                class="latin-symbol"
+                >(</span
+              >行<span class="latin-symbol">)</span>할 수 있는 건강한 생활
+              습관을 은밀하게 유도한다<span class="latin-symbol">.</span>
+            </p>
+            <br />
+            <img
+              src="source/img/image_1"
+              width="100%"
+              height="200px"
+              alt="웹 메인페이지"
+            />
+            <img
+              src="source/img/image_1"
+              width="50%"
+              alt="진 메인페이지"
+              class="zine-image"
+            />
+          </div>
+          <div class="cell-detail" hidden>
+            <div class="cell-detail__meta">
+              <p>
+                <span class="cell-detail__title"
+                  >행운록<span class="latin-symbol">—</span>行運錄</span
+                ><br />정다정&nbsp;<span class="latin-symbol">@</span
+                ><span class="latin-letter">noezvd</span><br />박유진&nbsp;<span
+                  class="latin-symbol"
+                  >@</span
+                ><span class="latin-letter">yui</span
+                ><span class="latin-digit">1</span
+                ><span class="latin-letter">up</span>
+              </p>
+              <p>
+                <span class="latin-digit">120</span>
+                <span class="latin-letter">x</span>
+                <span class="latin-digit">185</span> ㎜<br />매쉬멜로우지
+                <span class="latin-digit">250</span
+                ><span class="latin-letter">g</span>
+                <span class="latin-symbol">,</span> 스노우지
+                <span class="latin-digit">100</span
+                ><span class="latin-letter">g</span><br /><span
+                  class="latin-letter"
+                  >KoPub</span
+                >돋움<span class="latin-symbol">,</span>
+                <span class="latin-letter">KoPub</span>바탕
+              </p>
+              <p>
+                HTML, CSS, JavaScript<br /><span class="latin-letter"
+                  >Hypertype</span
+                >
+                함렡
+              </p>
+            </div>
+            <div class="cell-detail__grid">
+              <div class="cell-detail__images">
+                <img src="source/img/image_1" alt="웹 메인페이지" />
+                <img src="source/img/image_1" alt="진 메인페이지" />
+              </div>
+              <div class="cell-detail__text">
+                <div class="cell-detail__qa">
+                  <p>
+                    작품의 주제와 특징을 소개해주세요<span class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    미신은 비과학적이지만 좋은 결과를 기대하며 믿는 심리에
+                    주목해<span class="latin-symbol">,</span> 그 행위를 현대인을
+                    위한 건강한 실천으로<span class="latin-symbol">,</span>
+                    결과를 행운으로 연결했다<span class="latin-symbol">.</span>
+                    이를 열쇠와 상자로 시각화해 직접 열고 확인하는 과정으로
+                    행운을 기다리기보다 스스로 만들어가는 경험을 표현했다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    소유<span class="latin-symbol">-</span>접속 특성을 어떻게
+                    해석해 주제와 연결했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    소유와 접속<span class="latin-symbol">.</span> 사용자는 직접
+                    열쇠 카드를 뽑아 소유하고<span class="latin-symbol">,</span>
+                    웹에 접속해 소유한 열쇠 카드를 활용하여 행운의 내용을
+                    확인한다<span class="latin-symbol">.</span> 이처럼 물리적
+                    소유에서 디지털 접속으로 이어지는 과정을 통해 행운이
+                    사용자에게 전달되고 완전히 소유되는 경험을 담았다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                </div>
+                <div class="cell-detail__qa">
+                  <p>
+                    진과 웹의 역할을 어떻게 설정했는지 알려주세요<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                  </p>
+                  <p class="indent">
+                    웹은 행운의 내용을 제공하지만 진 없이는 확인할 수 없고<span
+                      class="latin-symbol"
+                      >,</span
+                    >
+                    진은 행운을 소유하게 하지만 내용을 알 수 없다<span
+                      class="latin-symbol"
+                      >.</span
+                    >
+                    서로의 부족한 부분을 보완하는 과정과 진에 담긴 글을 읽는
+                    경험까지 더해 행운에 대한 믿음이 자연스럽게 증폭되도록
+                    했다<span class="latin-symbol">.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="keynote-popup-backdrop" id="keynote-popup-backdrop"></div>
+    <div class="keynote-popup" id="keynote-popup">
+      <button
+        class="keynote-popup__close"
+        id="keynote-popup-close"
+        aria-label="닫기"
+      >
+        <span class="latin-symbol">&times;</span>
+      </button>
+      <div class="keynote-popup__content">
+        <p>
+          웹과 인쇄물은 각자의 방식으로 존재한다<span class="latin-symbol"
+            >.</span
+          >
+        </p>
+        <p>
+          웹의 페이지와 진<span class="latin-symbol">(</span
+          ><span class="latin-letter">zine</span
+          ><span class="latin-symbol">)</span>의 페이지는 서로 다른 읽기의
+          방식을 가진다<span class="latin-symbol">. 《</span
+          ><span class="latin-letter">page to page</span
+          ><span class="latin-symbol">》</span>에서 하나의 생각은 화면과
+          지면이라는 두 공간을 거쳐가며 보는 이에게 다양한 방식으로
+          와닿는다<span class="latin-symbol">.</span> 그 사이에서 웹과 진<span
+            class="latin-symbol"
+            >(</span
+          ><span class="latin-letter">zine</span
+          ><span class="latin-symbol">)</span>은 서로를 보완하는 관계에
+          놓인다<span class="latin-symbol">.</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="keynote-popup-backdrop" id="cell-popup-backdrop"></div>
+    <div class="keynote-popup" id="cell-popup">
+      <button
+        class="keynote-popup__close"
+        id="cell-popup-close"
+        aria-label="닫기"
+      >
+        <span class="latin-symbol">&times;</span>
+      </button>
+      <div class="keynote-popup__content" id="cell-popup-content"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
