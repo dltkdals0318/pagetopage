@@ -48,7 +48,11 @@ pyftsubset source/font/윤고딕340.ttf \
   --output-file=source/font/윤고딕340-subset.woff2 --flavor=woff2
 ```
 
-(No CSS changes needed — `style.css` already points at these filenames.)
+After regenerating, **bump the `?v=YYYYMMDD` query string** on both
+`*-subset.woff2` URLs in `style.css`. The filenames never change, so without
+a new version string browsers keep serving the old cached font and any newly
+added characters silently fall back to the system font (this is exactly the
+bug where `랑` / `뷰` / `렛` rendered in the wrong font in Chrome).
 
 **Why not just always ship the full 330/340.ttf as a safety net?** A
 `@font-face`'s `src` list picks one source by format support, not per

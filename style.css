@@ -1,6 +1,6 @@
 @font-face {
   font-family: "윤고딕+diatype";
-  src: url("source/font/윤고딕330-subset.woff2") format("woff2");
+  src: url("source/font/윤고딕330-subset.woff2?v=20260830") format("woff2");
   unicode-range:
     U+AC00-D7A3, U+1100-11FF, U+3130-318F, U+3000-3009, U+300C-303F,
     U+25A0-25CA, U+25CC-25FF, U+3300-33FF, U+4E00-9FFF;
@@ -24,7 +24,7 @@
 
 @font-face {
   font-family: "윤고딕bold+diatype";
-  src: url("source/font/윤고딕340-subset.woff2") format("woff2");
+  src: url("source/font/윤고딕340-subset.woff2?v=20260830") format("woff2");
   unicode-range:
     U+AC00-D7A3, U+1100-11FF, U+3130-318F, U+3000-3009, U+300C-303F,
     U+25A0-25CA, U+25CC-25FF, U+3300-33FF, U+4E00-9FFF;
