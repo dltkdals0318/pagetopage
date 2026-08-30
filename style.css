@@ -512,15 +512,7 @@ img {
 .cell-detail__images img {
   display: block;
   width: 100%;
-  object-fit: cover;
-}
-
-.cell-detail__images img:first-of-type {
-  aspect-ratio: 4 / 3;
-}
-
-.cell-detail__images img:last-of-type {
-  aspect-ratio: 210 / 297;
+  height: auto;
 }
 
 .cell-detail__text p {
