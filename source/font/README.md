@@ -6,9 +6,16 @@
 full modern Hangul + hanja coverage). The site does **not** load these
 directly — `style.css` loads `윤고딕330-subset.woff2` /
 `윤고딕340-subset.woff2` instead, which contain only the Korean-range
-characters that actually appear in `index.html` (486 characters, ~27–28KB
+characters that actually appear in `index.html` (~488 characters, ~27–28KB
 each vs. ~1.9MB). That's where nearly all of the page's original weight was
 coming from.
+
+> **The two masters are local-only** — `.gitignore`d, not tracked, not
+> deployed (~3.9MB saved from the repo/Pages tree). They are needed **only**
+> to regenerate the subsets. If they're missing (fresh clone, another
+> machine), put `윤고딕330.ttf` / `윤고딕340.ttf` back in this folder before
+> running the steps below. The committed `*-subset.woff2` files are all the
+> site itself needs.
 
 **If you add new Korean text and a character silently falls back to the
 system font (looks visibly different / not the site's font):** it's missing

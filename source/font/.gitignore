@@ -1,0 +1,6 @@
+# Full master fonts (~3.9MB) — kept local-only, not tracked / not deployed.
+# The site loads only the *-subset.woff2 files. These masters are needed
+# solely to regenerate those subsets (see README.md). Restore them here to
+# re-run pyftsubset.
+윤고딕330.ttf
+윤고딕340.ttf

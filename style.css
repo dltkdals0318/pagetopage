@@ -58,15 +58,15 @@
   box-sizing: border-box;
 }
 
-/* 커스텀 커서를 hover·클릭·텍스트 등 모든 상태에서 유지 */
 *,
 *::before,
 *::after {
-  cursor: url("source/image/cursor.png") 0 0, auto !important;
+  cursor:
+    url("source/image/cursor.png") 0 0,
+    auto !important;
 }
 
 html {
-  /* 기준 폭 1512px에서 1rem = 16px, 이후 화면 폭에 비례해 확대 */
   font-size: max(13px, 1.0582vw);
 }
 
@@ -108,7 +108,9 @@ body {
   line-height: 163.7%;
   word-break: keep-all;
   word-spacing: 0.018em;
-  cursor: url("source/image/cursor.png") 0 0, auto;
+  cursor:
+    url("source/image/cursor.png") 0 0,
+    auto;
 }
 ::selection {
   color: white;
@@ -184,7 +186,9 @@ img {
   line-height: 1;
   text-shadow: 0 0 12px rgba(6, 6, 6, 0.6);
   transform: translateY(4.25rem);
-  cursor: url("source/image/cursor.png") 0 0, auto;
+  cursor:
+    url("source/image/cursor.png") 0 0,
+    auto;
   pointer-events: auto;
 }
 .footer p:nth-of-type(1) {
@@ -221,7 +225,7 @@ img {
 #page-title:hover {
   animation: titleGlowCycle 9s linear infinite;
   animation-delay: 0.3s;
-  text-shadow: 0 0 12px rgba(var(--accent-1-rgb), 0.35);
+  text-shadow: 0 0 12px rgba(var(--accent-1-rgb), 1);
 }
 
 @keyframes titleGlowCycle {
@@ -372,7 +376,9 @@ img {
   padding: 1.25rem;
   margin: -1.25rem;
   border-radius: 12px;
-  cursor: url("source/image/cursor.png") 0 0, auto;
+  cursor:
+    url("source/image/cursor.png") 0 0,
+    auto;
   transition: box-shadow 0.3s ease;
 }
 
@@ -475,7 +481,9 @@ img {
   line-height: 1;
   color: white;
   text-shadow: 0 0 5px rgb(24, 24, 24);
-  cursor: url("source/image/cursor.png") 0 0, auto;
+  cursor:
+    url("source/image/cursor.png") 0 0,
+    auto;
   z-index: 2;
 }
 .keynote-popup__close:hover {
@@ -609,7 +617,7 @@ img {
   }
 
   #page-title:hover {
-    text-shadow: 0 0 24px rgba(var(--accent-1-rgb), 0.35);
+    text-shadow: 0 0 24px rgba(var(--accent-1-rgb), 1);
   }
 
   @keyframes titleGlowCycle {
@@ -672,7 +680,9 @@ img {
   *,
   *::before,
   *::after {
-    cursor: url("source/image/cursor-lg.png") 0 0, auto !important;
+    cursor:
+      url("source/image/cursor-lg.png") 0 0,
+      auto !important;
   }
 }
 
@@ -680,6 +690,8 @@ img {
   *,
   *::before,
   *::after {
-    cursor: url("source/image/cursor-xl.png") 0 0, auto !important;
+    cursor:
+      url("source/image/cursor-xl.png") 0 0,
+      auto !important;
   }
 }
