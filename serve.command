@@ -1,11 +1,3 @@
-#!/bin/bash
-# Double-click this file (or run `bash serve.command` in Terminal) to preview
-# the site locally. Needed because opening index.html as a file:// URL blocks
-# @font-face loading in Chrome — a local web server fixes that.
-#
-# No internet or installs required: uses python3 / python / ruby, whichever
-# the Mac already has (macOS ships Ruby).
-
 cd "$(dirname "$0")" || exit 1
 
 PORT=8000
