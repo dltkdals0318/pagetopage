@@ -15,13 +15,6 @@ const GLOW_OPACITY_ACTIVE = 1;
 
 const SHADOW_BLUR = 18;
 
-// Shape sizes were tuned on a laptop viewport. On bigger displays (iMac,
-// external monitors) they'd look tiny, so ramp the multiplier up with the
-// viewport WIDTH — height is an unreliable signal on desktops because browser
-// chrome eats a variable chunk of it. Stays at 1x for every MacBook width,
-// reaching AUTO_SCALE_MAX at a 27" iMac's 2560 CSS px. SHAPE_MAX_EXTENT_RATIO
-// then caps any single shape to a fraction of the short side so the scatter
-// grid always has room.
 const AUTO_SCALE_BASE_WIDTH = 1800;
 const AUTO_SCALE_FULL_WIDTH = 2560;
 const AUTO_SCALE_MAX = 2.4;
@@ -145,15 +138,9 @@ function setup() {
   noLoop();
 }
 
-// Shapes are kept out of the bottom strip so the fixed footer text stays clear.
 const SCATTER_BOTTOM = 0.82;
-// How far a shape may wander from its grid-cell centre, as a fraction of the
-// cell. Keeps the layout organic without ever letting shapes pile up.
 const CELL_JITTER = 0.7;
 
-// A shuffled, jittered grid of positions covering the scatter area. This can't
-// collapse the way best-of-N random placement did on large canvases — every
-// shape lands in its own cell, so all SHAPE_COUNT stay visible and clickable.
 function scatterPositions(count, inset) {
   const areaX = inset;
   const areaY = inset;
@@ -215,8 +202,6 @@ function createShapes() {
 
     const b = getShapeBounds(shape);
 
-    // Pull the cell position in so the whole shape stays on-canvas, above the
-    // footer. The extent cap above guarantees lo < hi on every axis.
     shape.x = constrain(
       positions[i].x,
       b.left + inset,
@@ -428,8 +413,6 @@ function draw() {
   if (DEBUG) drawDebug();
 }
 
-// Load the page with ?debug to overlay the numbers needed to diagnose
-// placement / hit-testing on a specific machine.
 function drawDebug() {
   const r = canvas.elt.getBoundingClientRect();
   drawingContext.save();
