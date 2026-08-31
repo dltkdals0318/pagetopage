@@ -17,19 +17,22 @@ const SHADOW_BLUR = 18;
 
 // Shape sizes were tuned on a laptop viewport. On bigger displays (iMac,
 // external monitors) they'd look tiny, so ramp the multiplier up with the
-// screen's short side: base size up to REFERENCE_MIN_DIM (laptops), reaching
-// AUTO_SCALE_MAX by AUTO_SCALE_FULL_DIM. SHAPE_MAX_EXTENT_RATIO then caps any
-// single shape to a fraction of the short side so the scatter placement always
-// has room — overshooting that is what piled shapes unclickably in the centre.
-const REFERENCE_MIN_DIM = 1100;
-const AUTO_SCALE_FULL_DIM = 1700;
-const AUTO_SCALE_MAX = 2.8;
+// viewport WIDTH — height is an unreliable signal on desktops because browser
+// chrome eats a variable chunk of it. Stays at 1x for every MacBook width,
+// reaching AUTO_SCALE_MAX at a 27" iMac's 2560 CSS px. SHAPE_MAX_EXTENT_RATIO
+// then caps any single shape to a fraction of the short side so the scatter
+// grid always has room.
+const AUTO_SCALE_BASE_WIDTH = 1800;
+const AUTO_SCALE_FULL_WIDTH = 2560;
+const AUTO_SCALE_MAX = 2.4;
 const SHAPE_MAX_EXTENT_RATIO = 0.3;
+
+const DEBUG = /[?&]debug\b/.test(window.location.search);
 
 function autoScale() {
   const t = constrain(
-    (Math.min(width, height) - REFERENCE_MIN_DIM) /
-      (AUTO_SCALE_FULL_DIM - REFERENCE_MIN_DIM),
+    (width - AUTO_SCALE_BASE_WIDTH) /
+      (AUTO_SCALE_FULL_WIDTH - AUTO_SCALE_BASE_WIDTH),
     0,
     1,
   );
@@ -142,11 +145,38 @@ function setup() {
   noLoop();
 }
 
-const SCATTER_ATTEMPTS = 60;
-const OVERLAP_ALLOWANCE = 0.5;
-
 // Shapes are kept out of the bottom strip so the fixed footer text stays clear.
 const SCATTER_BOTTOM = 0.82;
+// How far a shape may wander from its grid-cell centre, as a fraction of the
+// cell. Keeps the layout organic without ever letting shapes pile up.
+const CELL_JITTER = 0.7;
+
+// A shuffled, jittered grid of positions covering the scatter area. This can't
+// collapse the way best-of-N random placement did on large canvases — every
+// shape lands in its own cell, so all SHAPE_COUNT stay visible and clickable.
+function scatterPositions(count, inset) {
+  const areaX = inset;
+  const areaY = inset;
+  const areaW = width - inset * 2;
+  const areaH = height * SCATTER_BOTTOM - inset;
+
+  const cols = Math.max(1, Math.round(Math.sqrt((count * areaW) / areaH)));
+  const rows = Math.ceil(count / cols);
+
+  const cells = [];
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) cells.push([c, r]);
+  }
+  shuffle(cells, true);
+
+  const cellW = areaW / cols;
+  const cellH = areaH / rows;
+
+  return cells.slice(0, count).map(([c, r]) => ({
+    x: areaX + (c + 0.5) * cellW + random(-0.5, 0.5) * cellW * CELL_JITTER,
+    y: areaY + (r + 0.5) * cellH + random(-0.5, 0.5) * cellH * CELL_JITTER,
+  }));
+}
 
 function createShapes() {
   const shadowIndices = balancedShadowIndices(SHAPE_COUNT);
@@ -156,6 +186,7 @@ function createShapes() {
 
   const inset = Math.min(width, height) * 0.03;
   const maxExtent = Math.min(width, height) * SHAPE_MAX_EXTENT_RATIO;
+  const positions = scatterPositions(SHAPE_COUNT, inset);
 
   for (let i = 0; i < SHAPE_COUNT; i++) {
     const def = randomShapeDef();
@@ -182,42 +213,20 @@ function createShapes() {
       }
     }
 
-    const half = getHalfExtent(shape);
     const b = getShapeBounds(shape);
 
-    // Placement window: the whole shape must stay on-canvas, above the footer.
-    // Same maths on every screen size — the per-shape extent cap keeps this
-    // window wide enough that shapes scatter instead of piling in the centre.
-    const minX = b.left + inset;
-    const maxX = Math.max(minX, width - b.right - inset);
-    const minY = b.top + inset;
-    const maxY = Math.max(minY, height * SCATTER_BOTTOM - b.bottom);
-
-    let bestX = (minX + maxX) / 2;
-    let bestY = (minY + maxY) / 2;
-    let bestScore = -Infinity;
-
-    for (let attempt = 0; attempt < SCATTER_ATTEMPTS; attempt++) {
-      const x = minX < maxX ? random(minX, maxX) : bestX;
-      const y = minY < maxY ? random(minY, maxY) : bestY;
-
-      let score = Infinity;
-      for (const other of shapes) {
-        const allowed = (half + getHalfExtent(other)) * OVERLAP_ALLOWANCE;
-        score = Math.min(score, dist(x, y, other.x, other.y) - allowed);
-      }
-
-      if (score > bestScore) {
-        bestScore = score;
-        bestX = x;
-        bestY = y;
-      }
-
-      if (score > 0) break;
-    }
-
-    shape.x = bestX;
-    shape.y = bestY;
+    // Pull the cell position in so the whole shape stays on-canvas, above the
+    // footer. The extent cap above guarantees lo < hi on every axis.
+    shape.x = constrain(
+      positions[i].x,
+      b.left + inset,
+      width - b.right - inset,
+    );
+    shape.y = constrain(
+      positions[i].y,
+      b.top + inset,
+      height * SCATTER_BOTTOM - b.bottom,
+    );
 
     shapes.push(shape);
   }
@@ -282,13 +291,6 @@ function updateDrag(px, py) {
   const b = getShapeBounds(draggedShape);
   draggedShape.x = constrain(px - dragOffsetX, b.left, width - b.right);
   draggedShape.y = constrain(py - dragOffsetY, b.top, height - b.bottom);
-}
-
-function getHalfExtent(shape) {
-  if (shape.type === "circle" || shape.type === "semicircle") {
-    return shape.radius;
-  }
-  return Math.max(shape.w, shape.h) / 2;
 }
 
 function getShapeBounds(shape) {
@@ -417,8 +419,38 @@ function drawShapeWithShadow(shape) {
 function draw() {
   background(255);
   for (let i = 0; i < shapes.length; i++) {
-    drawShapeWithShadow(shapes[i]);
+    try {
+      drawShapeWithShadow(shapes[i]);
+    } catch (err) {
+      if (DEBUG) console.warn("draw failed for shape", i, shapes[i], err);
+    }
   }
+  if (DEBUG) drawDebug();
+}
+
+// Load the page with ?debug to overlay the numbers needed to diagnose
+// placement / hit-testing on a specific machine.
+function drawDebug() {
+  const r = canvas.elt.getBoundingClientRect();
+  drawingContext.save();
+  drawingContext.shadowColor = "transparent";
+  noStroke();
+  fill(0);
+  textFont("monospace");
+  textSize(13);
+  const lines = [
+    `canvas ${width}x${height}  window ${windowWidth}x${windowHeight}  dpr ${window.devicePixelRatio}`,
+    `rect  left ${r.left.toFixed(1)}  top ${r.top.toFixed(1)}  ${r.width.toFixed(1)}x${r.height.toFixed(1)}`,
+    `autoScale ${autoScale().toFixed(2)}  shapeScale ${(SHAPE_SCALE * autoScale()).toFixed(2)}  shapes ${shapes.length}`,
+  ];
+  lines.forEach((t, i) => text(t, 14, 22 + i * 18));
+  noFill();
+  stroke(255, 0, 0);
+  for (const s of shapes) {
+    const b = getShapeBounds(s);
+    rect(s.x - b.left, s.y - b.top, b.left + b.right, b.top + b.bottom);
+  }
+  drawingContext.restore();
 }
 
 function keyPressed() {
