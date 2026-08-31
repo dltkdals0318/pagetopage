@@ -15,10 +15,25 @@ const GLOW_OPACITY_ACTIVE = 1;
 
 const SHADOW_BLUR = 18;
 
-function viewportScale() {
-  if (windowWidth >= 2560) return 5 / 1.5;
-  if (windowWidth >= 2000) return 4 / 1.5;
-  return 1;
+// Shape sizes were tuned on a laptop viewport. On bigger displays (iMac,
+// external monitors) they'd look tiny, so ramp the multiplier up with the
+// screen's short side: base size up to REFERENCE_MIN_DIM (laptops), reaching
+// AUTO_SCALE_MAX by AUTO_SCALE_FULL_DIM. SHAPE_MAX_EXTENT_RATIO then caps any
+// single shape to a fraction of the short side so the scatter placement always
+// has room — overshooting that is what piled shapes unclickably in the centre.
+const REFERENCE_MIN_DIM = 1100;
+const AUTO_SCALE_FULL_DIM = 1700;
+const AUTO_SCALE_MAX = 2.8;
+const SHAPE_MAX_EXTENT_RATIO = 0.3;
+
+function autoScale() {
+  const t = constrain(
+    (Math.min(width, height) - REFERENCE_MIN_DIM) /
+      (AUTO_SCALE_FULL_DIM - REFERENCE_MIN_DIM),
+    0,
+    1,
+  );
+  return lerp(1, AUTO_SCALE_MAX, t);
 }
 
 function hexToRgba(hex, alpha) {
@@ -127,24 +142,20 @@ function setup() {
   noLoop();
 }
 
-const SCATTER_ATTEMPTS = 40;
+const SCATTER_ATTEMPTS = 60;
 const OVERLAP_ALLOWANCE = 0.5;
 
+// Shapes are kept out of the bottom strip so the fixed footer text stays clear.
+const SCATTER_BOTTOM = 0.82;
+
 function createShapes() {
-  const areaW = width * 0.85;
-  const areaH = height * 0.62;
-
-  const startX = width / 2 - areaW / 2;
-  const startY = height * 0.4 - areaH / 2;
-
   const shadowIndices = balancedShadowIndices(SHAPE_COUNT);
 
-  const vScale = viewportScale();
+  const vScale = autoScale();
   const shapeScale = SHAPE_SCALE * vScale;
 
-  const bigScreen = vScale > 1;
   const inset = Math.min(width, height) * 0.03;
-  const maxSpacing = Math.min(width, height) * 0.22;
+  const maxExtent = Math.min(width, height) * SHAPE_MAX_EXTENT_RATIO;
 
   for (let i = 0; i < SHAPE_COUNT; i++) {
     const def = randomShapeDef();
@@ -157,15 +168,15 @@ function createShapes() {
     };
 
     if (def.type === "circle" || def.type === "semicircle") {
-      shape.radius = def.radius * shapeScale;
+      shape.radius = Math.min(def.radius * shapeScale, maxExtent);
     } else if (def.type === "cove") {
-      shape.w = def.size * shapeScale;
+      shape.w = Math.min(def.size * shapeScale, maxExtent * 2);
       shape.h = shape.w;
       shape.sx = def.sx;
       shape.sy = def.sy;
     } else {
-      shape.w = def.w * shapeScale;
-      shape.h = def.h * shapeScale;
+      shape.w = Math.min(def.w * shapeScale, maxExtent * 2);
+      shape.h = Math.min(def.h * shapeScale, maxExtent * 2);
       if (def.type === "rect") {
         shape.radii = cornerRadiiFor(def.style, shape.w, shape.h);
       }
@@ -174,32 +185,25 @@ function createShapes() {
     const half = getHalfExtent(shape);
     const b = getShapeBounds(shape);
 
+    // Placement window: the whole shape must stay on-canvas, above the footer.
+    // Same maths on every screen size — the per-shape extent cap keeps this
+    // window wide enough that shapes scatter instead of piling in the centre.
     const minX = b.left + inset;
-    const maxX = width - b.right - inset;
+    const maxX = Math.max(minX, width - b.right - inset);
     const minY = b.top + inset;
-    const maxY = bigScreen
-      ? height * 0.76 - b.bottom
-      : height - b.bottom - inset;
+    const maxY = Math.max(minY, height * SCATTER_BOTTOM - b.bottom);
 
-    let bestX = width / 2;
-    let bestY = height / 2;
+    let bestX = (minX + maxX) / 2;
+    let bestY = (minY + maxY) / 2;
     let bestScore = -Infinity;
 
     for (let attempt = 0; attempt < SCATTER_ATTEMPTS; attempt++) {
-      let x;
-      let y;
-      if (bigScreen) {
-        x = minX < maxX ? random(minX, maxX) : width / 2;
-        y = minY < maxY ? random(minY, maxY) : height * 0.4;
-      } else {
-        x = constrain(startX + random(areaW), b.left, width - b.right);
-        y = constrain(startY + random(areaH), b.top, height - b.bottom);
-      }
+      const x = minX < maxX ? random(minX, maxX) : bestX;
+      const y = minY < maxY ? random(minY, maxY) : bestY;
 
       let score = Infinity;
       for (const other of shapes) {
-        let allowed = (half + getHalfExtent(other)) * OVERLAP_ALLOWANCE;
-        if (bigScreen) allowed = Math.min(allowed, maxSpacing);
+        const allowed = (half + getHalfExtent(other)) * OVERLAP_ALLOWANCE;
         score = Math.min(score, dist(x, y, other.x, other.y) - allowed);
       }
 
